@@ -54,10 +54,7 @@
             font-size: 20px;
             cursor: pointer;
         }
-        .highlight {
-        background-color: #333;
-        color: white;
-    }
+
         .calendar-body {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
@@ -85,12 +82,6 @@
             width: 5px;
             height: 5px;
         }
-        .disabled {
-        background-color: #ccc;
-        color: #666;
-        cursor: not-allowed;
-        pointer-events: none; /* Prevents click events */
-    }
 
         .calendar-day:hover {
             background-color: #e9e9e9;
@@ -157,6 +148,12 @@
             justify-content: center;
             margin-top: -100px;
         }
+        .disabled {
+        background-color: #ccc;
+        color: #666;
+        cursor: not-allowed;
+        pointer-events: none; /* Prevents click events */
+    }
 
         .timepicker div:hover {
             background-color: #ccc;
@@ -335,20 +332,32 @@
                 <span id="selected-date-info">Selecteer een datum</span>
                 <span id="selected-time-info"></span>
                 <span id="service-details">Dienstgegevens</span>
-                <span id="service-name">{{$services->name}}</span>
+                <span id="service-name">{{$booking->service_name}}</span>
+                {{-- <span id="service-duration">{{$booking->service_duration}} min</span> --}}
                 <span id="appointment-details"></span>
-                <span id="service-price">{{$services->price}} {{$services->currency}}</span>
-                <a href="#" class="button disabled" id="next-button">Volgende</a>
+                <span id="service-price">{{$booking->service_price}} {{$booking->service_currency}}</span>
+                <a href="#" class="button disabled" id="next-button">update</a>
+                <a href="#" class="button" id="delete-button">delete</a>
+
             
                 <!-- Hidden Form -->
-                <form id="bookingForm" action="{{route('formDetails')}}" method="GET">
+                <form id="bookingForm" action="{{route('updateBooking')}}" method="GET">
                     
                     <input type="hidden" name="selected_date" id="hidden-date">
                     <input type="hidden" name="selected_time" id="hidden-time">
-                    <input type="hidden" name="service_name" value="{{$services->name}}">
-                    <input type="hidden" name="service_price" value="{{$services->price}}">
-                    <input type="hidden" name="service_currency" value="{{$services->currency}}">
+                    <input type="hidden" name="selected_date_old" id="hidden-date-old">
+                    <input type="hidden" name="selected_time_old" id="hidden-time-old">
+                    <input type="hidden" name="id" value="{{$booking->id}}">
+                    <input type="hidden" name="service_name" value="{{$booking->service_name}}">
+                    <input type="hidden" name="service_price" value="{{$booking->service_price}}">
+                    <input type="hidden" name="service_currency" value="{{$booking->service_currency}}">
                 </form>
+                  <!-- Hidden Form -->
+                <form id="deleteForm" action="{{route('booking.destroy',$booking->id)}}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                </form>
+                
         </div>
         <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
         <script>
@@ -530,7 +539,7 @@
                 });
             
                 updateCalendar();
-            </script>
+    </script>
             
         
 </body>

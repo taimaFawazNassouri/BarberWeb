@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call(DaySeeder::class);
-        $this->call(ServiceSeeder::class);
-        
+     
+        $this->call(DateBarber::class);
     }
 }

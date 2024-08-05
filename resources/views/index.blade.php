@@ -213,41 +213,13 @@ body, html {
                 <div class="service-card">
                     <img src="{{ $service->image }}" alt="Student">
                     <h3>{{$service->name}}</h3>
-                        <p>{{$service->duration}} min.<br>{{$service->price}} {{$service->currency}}</p>
+                        <p><br>{{$service->price}} {{$service->currency}}</p>
                         <a href="{{ route('books.show', $service->id) }}">Nu boeken</a>
+                        
+
                     </div>
             @endforeach
-           
-            {{-- <div class="service-card">
-                <img src="https://jim-barbershop.com/wp-content/uploads/2024/07/image-jim-0.jpg" alt="Fresh Coupe">
-                <h3>FRESHCOUPE</h3>
-                <p>25 min.<br>€ 25</p>
-                <a href="{{route('book.index')}}">Nu boeken</a>
-            </div>
-            <div class="service-card">
-                <img src="https://jim-barbershop.com/wp-content/uploads/2024/07/image-jim-2-1.jpg" alt="Beard">
-                <h3>Baard</h3>
-                <p>15 min.<br>€ 15</p>
-                <a href="{{route('book.index')}}">Nu boeken</a>
-            </div>
-            <div class="service-card">
-                <img src="https://jim-barbershop.com/wp-content/uploads/2024/07/image-jim-4.jpg" alt="Fresh Coupe + Beard">
-                <h3>FRESHCOUPE + BAARD</h3>
-                <p>40 min.<br>€ 35</p>
-                <a href="{{route('book.index')}}">Nu boeken</a>
-            </div>
-            <div class="service-card">
-                <img src="https://jim-barbershop.com/wp-content/uploads/2024/07/image-jim-3-2.jpg" alt="Deluxe">
-                <h3>DELUXE</h3>
-                <p>50 min.<br>€ 50</p>
-                <a href="{{route('book.index')}}">Nu boeken</a>
-            </div>
-            <div class="service-card">
-                    <img src="https://jim-barbershop.com/wp-content/uploads/2024/07/image-jim-3.jpg" alt="Deluxe">
-                    <h3>DELUXE</h3>
-                    <p>50 min.<br>€ 50</p>
-                    <a href="{{route('book.index')}}">Nu boeken</a>
-            </div> --}}
+     
         </div>
     </section>
     

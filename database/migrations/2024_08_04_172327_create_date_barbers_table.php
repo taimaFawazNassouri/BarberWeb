@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('services', function (Blueprint $table) {
+        Schema::create('date_barbers', function (Blueprint $table) {
             $table->id();
+            $table->date('date');
+            $table->time('time');
             $table->string('name');
-            $table->decimal('price', 8, 2); 
-            $table->string('currency', 3)->default('EUR');
-            $table->string('image')->nullable();
+            $table->boolean('status')->default(false); 
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('services');
+        Schema::dropIfExists('date_barbers');
     }
 };

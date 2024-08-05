@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
-use App\Http\Controllers\HomeController;
-
+use App\Http\Controllers\HomeController; 
+use App\Http\Controllers\CustomerDetailsController; 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,4 +19,9 @@ use App\Http\Controllers\HomeController;
 //     return view('index');
 // });
 Route::get('/', [HomeController::class, 'show']);
+Route::get('/customer_details', [HomeController::class, 'formDetails'])->name('formDetails');
+Route::get('/updateBooking', [HomeController::class, 'updateBooking'])->name('updateBooking');
+
+Route::get('/update/{id}', [HomeController::class, 'showBooking'])->name('showBooking');
 Route::resource('/books', BookController::class);
+Route::resource('/booking',  CustomerDetailsController::class);

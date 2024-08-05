@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Service;
 use App\Models\Day;
-
+use App\Models\DateBarber;
 class BookController extends Controller
 {
     /**
@@ -13,7 +13,7 @@ class BookController extends Controller
      */
     public function index()
     {
-       
+       return view('empty');
     }
 
     /**
@@ -36,11 +36,29 @@ class BookController extends Controller
      * Display the specified resource.
      */
     public function show($id)
-    {   $days = Day::all();
+    {
+        // Get all entries from the DateBarber table
+        $days = DateBarber::all();
+    
+        // Retrieve the service based on the given ID
         $services = Service::findOrFail($id);
-        return view('book',compact('services','days'));
+    
+        // Organize the data by date with associated times and their statuses
+        $daysData = $days->groupBy('date')->map(function ($day) {
+            return $day->map(function ($entry) {
+                return [
+                    'time' => $entry->time,
+                    'status' => $entry->status
+                ];
+            });
+        });
+    
+        // Convert the collection to an array for JavaScript
+        $daysDataArray = $daysData->toArray();
+    
+        return view('book', compact('services', 'daysDataArray'));
     }
-
+    
     /**
      * Show the form for editing the specified resource.
      */

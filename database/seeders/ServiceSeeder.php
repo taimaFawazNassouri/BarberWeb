@@ -20,12 +20,12 @@ class ServiceSeeder extends Seeder
 
         // Insert services
         DB::table('services')->insert([
-            ['name' => 'Baard', 'duration' => 15, 'price' => 15.00, 'currency' =>'€', 'image'=>'https://jim-barbershop.com/wp-content/uploads/2024/07/image-jim-100.jpg'],
-            ['name' => 'Fade haarsnit', 'duration' => 15, 'price' => 25.00, 'currency' =>'€', 'image'=>'https://jim-barbershop.com/wp-content/uploads/2024/07/image-jim-0.jpg'],
-            ['name' => 'Klassieke haarsnit', 'duration' => 15, 'price' => 20.00, 'currency' =>'€', 'image'=>'https://jim-barbershop.com/wp-content/uploads/2024/07/image-jim-2-1.jpg'],
-            ['name' => 'Broske', 'duration' => 15, 'price' => 15.00, 'currency' =>'€', 'image'=>'https://jim-barbershop.com/wp-content/uploads/2024/07/image-jim-4.jpg'],
-            ['name' => 'Kinderen', 'duration' => 15, 'price' => 15.00, 'currency' =>'€', 'image'=>'https://jim-barbershop.com/wp-content/uploads/2024/07/image-jim-3-2.jpg'],
-            ['name' => 'Haar en baard', 'duration' => 15, 'price' => 32.50, 'currency' =>'€', 'image'=>'https://jim-barbershop.com/wp-content/uploads/2024/07/image-jim-3.jpg'],
+            ['name' => 'Baard', 'price' => 15.00, 'currency' =>'€', 'image'=>'https://jim-barbershop.com/wp-content/uploads/2024/07/image-jim-100.jpg'],
+            ['name' => 'Fade haarsnit', 'price' => 25.00, 'currency' =>'€', 'image'=>'https://jim-barbershop.com/wp-content/uploads/2024/07/image-jim-0.jpg'],
+            ['name' => 'Klassieke haarsnit', 'price' => 20.00, 'currency' =>'€', 'image'=>'https://jim-barbershop.com/wp-content/uploads/2024/07/image-jim-2-1.jpg'],
+            ['name' => 'Broske',  'price' => 15.00, 'currency' =>'€', 'image'=>'https://jim-barbershop.com/wp-content/uploads/2024/07/image-jim-4.jpg'],
+            ['name' => 'Kinderen', 'price' => 15.00, 'currency' =>'€', 'image'=>'https://jim-barbershop.com/wp-content/uploads/2024/07/image-jim-3-2.jpg'],
+            ['name' => 'Haar en baard', 'price' => 32.50, 'currency' =>'€', 'image'=>'https://jim-barbershop.com/wp-content/uploads/2024/07/image-jim-3.jpg'],
         ]);
 
         // Fetch all services
