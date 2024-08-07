@@ -24,7 +24,10 @@ class HomeController extends Controller
         
         return view('customer_details',compact('selected_time','selected_date','service_name','service_price','service_currency'));
     }
-
+    public function email(){
+        $booking = Booking::all();
+        return view('emails.booking_confirmation',compact('booking'));
+    }
 
     public function showBooking($id)
     {
@@ -41,8 +44,11 @@ class HomeController extends Controller
     
         // Convert the collection to an array for JavaScript
         $daysDataArray = $daysData->toArray();
-        return view('updateBooking',compact('booking','daysDataArray') );
-    }
+
+    $bookingDate = $booking->date; // Assuming $booking has a date field
+    $bookingTime = $booking->time; // Assuming $booking has a time field
+
+    return view('updateBooking', compact('booking', 'daysDataArray', 'bookingDate', 'bookingTime'));    }
     public function updateBooking(Request $request)
     {  
         $id = $request->id;
@@ -57,7 +63,5 @@ class HomeController extends Controller
         return view('customer_details_update',compact('selected_time_old','selected_date_old','selected_time','selected_date','service_name','service_price','service_currency','id'));
     }
   
-    public function updateForm($id){
-        return "jjj";
-    }
+    
 }

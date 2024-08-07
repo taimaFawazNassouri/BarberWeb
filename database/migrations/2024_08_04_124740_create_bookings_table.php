@@ -13,12 +13,11 @@ return new class extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('first_name');
+            $table->string('last_name');
             $table->string('email');
             $table->string('code');
             $table->string('phone');
-            $table->boolean('sms_reminder')->default(false);
-            $table->text('message')->nullable();
             $table->string('service_name');
             $table->decimal('service_price', 8, 2);
             $table->string('service_currency');

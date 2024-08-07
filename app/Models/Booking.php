@@ -9,6 +9,6 @@ class Booking extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'name','date','time','email','code','phone','sms_reminder','message','service_name','service_price','service_currency'
+        'first_name','last_name','date','time','email','code','phone','service_name','service_price','service_currency'
     ];
 }

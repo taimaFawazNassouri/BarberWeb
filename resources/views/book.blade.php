@@ -34,73 +34,104 @@
             margin-bottom: 20px;
         }
 
-        .calendar {
-            grid-column: 1 / 2;
-        }
-
-        .calendar-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px;
-            background-color: #333;
-            color: white;
-        }
-
-        .calendar-header button {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 20px;
-            cursor: pointer;
-        }
-        .highlight {
-        background-color: #333;
-        color: white;
-    }
-        .calendar-body {
-            display: grid;
+        /* Calendar Header */
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #000;
+    color: white;
+    border-radius: 20px;
+}
+.calendar-body {
+          display: grid;
             grid-template-columns: repeat(7, 1fr);
             padding: 10px;
+            border: 1px solid #000;
+        border-radius: 20px;        }
+.calendar-header button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Calendar Days */
+.calendar-day {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    margin: 2px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.calendar-day.selected,
+.calendar-day:hover {
+    background-color: #333;
+    color: white;
+    border-color: #333;
+   }
+
+   .timepicker {
+            grid-column: 2;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
-         .calendar-day {
-           position: relative;
-           display: inline-block;
-           width: 40px;
-           height: 40px;
-           text-align: center;
-           line-height: 40px;
-           margin: 2px;
-           border: 1px solid #ccc;
-           cursor: pointer;
+        .timepicker div {
+            margin-top: 20px;
+            width: 100px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #000;
+            border-radius: 20px;
+            cursor: pointer;
         }
-        .point {
-            position: absolute;
-            bottom: 5px;
-            left: 50%;
-            transform: translateX(-50%);
-            border-radius: 50%;
-            background-color: #000;
-            width: 5px;
-            height: 5px;
-        }
-        .disabled {
-        background-color: #ccc;
-        color: #666;
-        cursor: not-allowed;
-        pointer-events: none; /* Prevents click events */
-    }
+.timepicker div:hover,
+.timepicker div.selected {
+    background-color: #333;
+    color: white;
+}
 
-        .calendar-day:hover {
-            background-color: #e9e9e9;
-        }
+.highlight {
+    background-color: #e0e0e0;
+    color: #666;
+    cursor: not-allowed;
+}
 
-        .calendar-day.selected {
-            background-color: #333;
-            color: white;
-            border-radius: 5px;
-        }
+/* Disabled Styles */
+.disabled {
+    background-color: #f5f5f5;
+    color: #b0b0b0;
+    cursor: not-allowed;
+}
+
+.show-all {
+    width: 100%;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.show-all:hover {
+    background-color: #444;
+}
+
 
         .calendar-day.outside {
             color: #ccc;
@@ -109,9 +140,10 @@
         .calendar-weekdays {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
-            background-color: #f1f1f1;
+           color: #000;
             padding: 10px;
             font-weight: bold;
+            
         }
 
         .calendar-weekdays div {
@@ -125,7 +157,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            margin-top: -100px;
+            margin-top: -200px;
         }
 
         .booking-info span {
@@ -133,23 +165,7 @@
             margin-bottom: 5px;
         }
 
-        .timepicker {
-            grid-column: 2 / 3;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .timepicker div {
-            width: 80px;
-            height: 40px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+        
         .design-placeholder{
             grid-column: 2 / 3;
             display: inline;
@@ -158,14 +174,7 @@
             margin-top: -100px;
         }
 
-        .timepicker div:hover {
-            background-color: #ccc;
-        }
-
-        .timepicker div.selected {
-            background-color: #333;
-            color: white;
-        }
+      
 
         .button {
             display: inline-block;
@@ -178,15 +187,7 @@
             cursor: pointer;
             margin-top: 10px;
         }
-        .show-all{
-            margin-top: 2px;
-            height: 40px;
-            display: inline-block;
-            background-color: #333;
-            color: #fff;
-            border-radius: 5px;
-
-        }
+        
 
         .button.disabled {
             background-color: #ccc;
@@ -212,6 +213,11 @@
             font-size: 36px;
             line-height: 1.2;
             margin: 0;
+        }
+       
+        .logo img{
+            width: 180px;
+            height: 150px;
         }
 
         .logo p {
@@ -263,6 +269,101 @@
         .header-icons span {
             font-weight: 400;
         }
+        .form-container {
+    display: flex;
+    width: 350px;
+    margin: 0 ;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background-color: #fff;
+
+}
+
+.line-1  {
+    width: 2px;
+    background-color: #000;
+    margin-right: 20px;
+}
+
+.form-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.container-19 {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.naam,
+.emailadres,
+.telefoonnummer {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.container-13 {
+    display: flex;
+    gap: 10px;
+}
+
+.rectangle-12,
+.rectangle-17,
+.rectangle-13,
+.rectangle-14 {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    box-sizing: border-box;
+}
+
+.rectangle-12,
+.rectangle-17 {
+    flex: 1;
+}
+
+.container-20 {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+
+
+.container-11 {
+    font-weight: bold;
+}
+
+.container-7 {
+    text-align: right;
+    margin-top: 20px;
+}
+
+.volgende {
+    background-color: #000;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.volgende:hover {
+    background-color: #333;
+}
+select{
+    width: 100px;
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 20px;            
+          
+        }
+
     </style>
 </head>
 
@@ -271,35 +372,13 @@
         <div class="header-container">
             <div class="center-content">
                 <div class="logo">
-                    <h1>CONCEPT<br>FAYA</h1>
-                    <p>HAIR, BEAUTY & BARBERSHOP</p>
+                    <img width="120px" height="100px"  src="{{ asset('assets/images/logo-06 (1).jpg') }}" alt="">
+                     <p>HAIR, BEAUTY & BARBERSHOP</p>
                 </div>
-                <nav>
-                    <ul class="nav-links">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Ons team</a></li>
-                        <li><a href="#">Neem contact op</a></li>
-                        <li><a href="#">TB Barbershop</a></li>
-                        <li><a href="#">Teko Beauty</a></li>
-                    </ul>
-                </nav>
+                
             </div>
 
-            <div class="header-icons">
-
-                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="10%" height="10%" viewBox="5.7 0 105.5 126.1" preserveAspectRatio="xMinYMax meet" data-hook="svg-icon-1">
-                    <path d="M99.8 28.4c0-1.2-0.9-2-2.1-2h-15c0 3.2 0 7.6 0 8.2 0 1.5-1.2 2.6-2.6 2.9 -1.5 0.3-2.9-0.9-3.2-2.3 0-0.3 0-0.3 0-0.6 0-0.9 0-4.7 0-8.2H40.1c0 3.2 0 7.3 0 8.2 0 1.5-1.2 2.9-2.6 2.9 -1.5 0-2.9-0.9-3.2-2.3 0-0.3 0-0.3 0-0.6 0-0.6 0-5 0-8.2h-15c-1.2 0-2 0.9-2 2L8.3 124c0 1.2 0.9 2.1 2.1 2.1h96.3c1.2 0 2.1-0.9 2.1-2.1L99.8 28.4z"></path>
-                    <path d="M59.1 5.9c-2.9 0-2 0-2.9 0 -2 0-4.4 0.6-6.4 1.5 -3.2 1.5-5.9 4.1-7.6 7.3 -0.9 1.8-1.5 3.5-1.8 5.6 0 0.9-0.3 1.5-0.3 2.3 0 1.2 0 2.1 0 3.2 0 1.5-1.2 2.9-2.6 2.9 -1.5 0-2.9-0.9-3.2-2.3 0-0.3 0-0.3 0-0.6 0-1.2 0-2.3 0-3.5 0-3.2 0.9-6.4 2-9.4 1.2-2.3 2.6-4.7 4.7-6.4 3.2-2.9 6.7-5 11.1-5.9C53.5 0.3 55 0 56.7 0c1.5 0 2.9 0 4.4 0 2.9 0 5.6 0.6 7.9 1.8 2.6 1.2 5 2.6 6.7 4.4 3.2 3.2 5.3 6.7 6.4 11.1 0.3 1.5 0.6 3.2 0.6 4.7 0 1.2 0 2.3 0 3.2 0 1.5-1.2 2.6-2.6 2.9s-2.9-0.9-3.2-2.3c0-0.3 0-0.3 0-0.6 0-1.2 0-2.6 0-3.8 0-2.3-0.6-4.4-1.8-6.4 -1.5-3.2-4.1-5.9-7.3-7.3 -1.8-0.9-3.5-1.8-5.9-1.8C61.1 5.9 59.1 5.9 59.1 5.9L59.1 5.9z"></path><text x="58.5" y="77" dy=".35em" text-anchor="middle" class="uxskpx" data-hook="items-count">0</text>
-                </svg>
-                <a href="#" class="login">
-                    <svg data-bbox="0 0 50 50" data-type="shape" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 50 50">
-                        <g>
-                            <path d="M25 48.077c-5.924 0-11.31-2.252-15.396-5.921 2.254-5.362 7.492-8.267 15.373-8.267 7.889 0 13.139 3.044 15.408 8.418-4.084 3.659-9.471 5.77-15.385 5.77m.278-35.3c4.927 0 8.611 3.812 8.611 8.878 0 5.21-3.875 9.456-8.611 9.456s-8.611-4.246-8.611-9.456c0-5.066 3.684-8.878 8.611-8.878M25 0C11.193 0 0 11.193 0 25c0 .915.056 1.816.152 2.705.032.295.091.581.133.873.085.589.173 1.176.298 1.751.073.338.169.665.256.997.135.515.273 1.027.439 1.529.114.342.243.675.37 1.01.18.476.369.945.577 1.406.149.331.308.657.472.98.225.446.463.883.714 1.313.182.312.365.619.56.922.272.423.56.832.856 1.237.207.284.41.568.629.841.325.408.671.796 1.02 1.182.22.244.432.494.662.728.405.415.833.801 1.265 1.186.173.154.329.325.507.475l.004-.011A24.886 24.886 0 0 0 25 50a24.881 24.881 0 0 0 16.069-5.861.126.126 0 0 1 .003.01c.172-.144.324-.309.49-.458.442-.392.88-.787 1.293-1.209.228-.232.437-.479.655-.72.352-.389.701-.78 1.028-1.191.218-.272.421-.556.627-.838.297-.405.587-.816.859-1.24a26.104 26.104 0 0 0 1.748-3.216c.208-.461.398-.93.579-1.406.127-.336.256-.669.369-1.012.167-.502.305-1.014.44-1.53.087-.332.183-.659.256-.996.126-.576.214-1.164.299-1.754.042-.292.101-.577.133-.872.095-.89.152-1.791.152-2.707C50 11.193 38.807 0 25 0"></path>
-                        </g>
-                    </svg>
-                    <span>Inloggen</span>
-                </a>
-            </div>
+           
         </div>
     </header>
     <div class="container">
@@ -331,207 +410,422 @@
             <span>Niet beschikbaar</span>
             <button class="button">Eerst beschikbare datum</button>
         </div>
-        <div class="booking-info">
-                <span id="selected-date-info">Selecteer een datum</span>
-                <span id="selected-time-info"></span>
-                <span id="service-details">Dienstgegevens</span>
-                <span id="service-name">{{$services->name}}</span>
-                <span id="appointment-details"></span>
-                <span id="service-price">{{$services->price}} {{$services->currency}}</span>
-                <a href="#" class="button disabled" id="next-button">Volgende</a>
-            
-                <!-- Hidden Form -->
-                <form id="bookingForm" action="{{route('formDetails')}}" method="GET">
-                    
-                    <input type="hidden" name="selected_date" id="hidden-date">
-                    <input type="hidden" name="selected_time" id="hidden-time">
-                    <input type="hidden" name="service_name" value="{{$services->name}}">
-                    <input type="hidden" name="service_price" value="{{$services->price}}">
-                    <input type="hidden" name="service_currency" value="{{$services->currency}}">
-                </form>
-        </div>
-        <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
-        <script>
-                const calendarDays = document.getElementById('calendarBody');
-                const selectedDateInfo = document.getElementById('selected-date-info');
-                const selectedTimeInfo = document.getElementById('selected-time-info');
-                const timepicker = document.getElementById('timepicker');
-                const appointmentDetails = document.getElementById('appointment-details');
-                const nextButton = document.getElementById('next-button');
-                const currentMonthLabel = document.getElementById('currentMonth');
-                const designPlaceholder = document.getElementById('design_placeholder');
-                const placholderDateInfo = document.getElementById('placeholder-date');
-            
-                const hiddenDate = document.getElementById('hidden-date');
-                const hiddenTime = document.getElementById('hidden-time');
-            
-                let currentDate = new Date(2024, 7, 1); // Start in August 2024
-            
-                // Pass days data to JavaScript
-                const daysData = @json($daysDataArray);
-            
-                function updateCalendar() {
-                    calendarDays.innerHTML = '';
-                    currentMonthLabel.textContent = currentDate.toLocaleDateString('nl-NL', {
-                        month: 'long',
-                        year: 'numeric'
-                    });
-            
-                    const firstDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
-                    const lastDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
-            
-                    // Start day of the week (0 for Sunday, 1 for Monday, etc.)
-                    const startDay = (firstDayOfMonth.getDay() + 6) % 7; // Adjusting to start week on Monday
-            
-                    // Populate previous month's trailing days
-                    for (let i = 0; i < startDay; i++) {
-                        const emptyDiv = document.createElement('div');
-                        emptyDiv.className = 'calendar-day outside';
-                        calendarDays.appendChild(emptyDiv);
-                    }
-            
-                    // Populate current month's days
-                    for (let day = 1; day <= lastDayOfMonth.getDate(); day++) {
-                        const dayDiv = document.createElement('div');
-                        dayDiv.className = 'calendar-day';
-                        dayDiv.textContent = day;
-            
-                        // Use local date instead of UTC to avoid off-by-one errors
-                        const date = new Date(currentDate.getFullYear(), currentDate.getMonth(), day +1);
-                        const dateString = date.toISOString().split('T')[0];
-            
-                        // Check if all times for this day have status == 1
-                        const dayTimes = daysData[dateString] || [];
-                        const allDisabled = dayTimes.every(timeSlot => timeSlot.status === 1);
-            
-                        const isWeekend = date.getDay() === 0 || date.getDay() === 5;
+   
+        
+        <div class="form-container">
+            <div class="line-1"></div>
+            <form id="bookingForm" action="{{route('booking.store')}}" method="POST">
+                @csrf
+                 <input type="hidden" name="selected_date" id="hidden-date">
+                 <input type="hidden" name="selected_time" id="hidden-time">
+                 <input type="hidden" name="service_name" value="{{$services->name}}">
+                 <input type="hidden" name="service_price" value="{{$services->price}}">
+                 <input type="hidden" name="service_currency" value="{{$services->currency}}">
+                <div class="form-content">
+                    <div class="container-19">
+                        <div class="naam">Naam</div>
+                        <div class="container-13">
+                            <input type="first_name" name="first_name" class="rectangle-12" placeholder="Voornaam" required>
+                            <input type="last_name" name="last_name" class="rectangle-17" placeholder="Achternaam" required>
+                        </div>
+                        <div class="emailadres">E-mailadres</div>
+                        <input type="email" name="email" class="rectangle-13" placeholder="E-mailadres" required>
+                        <div class="telefoonnummer">Telefoonnummer</div>
+                        <div class="container-20">
+                            <div class="country-code">
+                                    <select id="code" name="code" required>
+                                            <option value="+1">+1 (United States)</option>
+                                            <option value="+7">+7 (Russia)</option>
+                                            <option value="+20">+20 (Egypt)</option>
+                                            <option value="+27">+27 (South Africa)</option>
+                                            <option value="+30">+30 (Greece)</option>
+                                            <option value="+31">+31 (Netherlands)</option>
+                                            <option value="+32">+32 (Belgium)</option>
+                                            <option value="+33">+33 (France)</option>
+                                            <option value="+34">+34 (Spain)</option>
+                                            <option value="+39">+39 (Italy)</option>
+                                            <option value="+44">+44 (United Kingdom)</option>
+                                            <option value="+49">+49 (Germany)</option>
+                                            <option value="+52">+52 (Mexico)</option>
+                                            <option value="+55">+55 (Brazil)</option>
+                                            <option value="+61">+61 (Australia)</option>
+                                            <option value="+62">+62 (Indonesia)</option>
+                                            <option value="+64">+64 (New Zealand)</option>
+                                            <option value="+65">+65 (Singapore)</option>
+                                            <option value="+81">+81 (Japan)</option>
+                                            <option value="+82">+82 (South Korea)</option>
+                                            <option value="+86">+86 (China)</option>
+                                            <option value="+91">+91 (India)</option>
+                                            <option value="+92">+92 (Pakistan)</option>
+                                            <option value="+93">+93 (Afghanistan)</option>
+                                            <option value="+94">+94 (Sri Lanka)</option>
+                                            <option value="+95">+95 (Myanmar)</option>
+                                            <option value="+98">+98 (Iran)</option>
+                                            <option value="+211">+211 (South Sudan)</option>
+                                            <option value="+212">+212 (Morocco)</option>
+                                            <option value="+213">+213 (Algeria)</option>
+                                            <option value="+216">+216 (Tunisia)</option>
+                                            <option value="+218">+218 (Libya)</option>
+                                            <option value="+220">+220 (Gambia)</option>
+                                            <option value="+221">+221 (Senegal)</option>
+                                            <option value="+222">+222 (Mauritania)</option>
+                                            <option value="+223">+223 (Mali)</option>
+                                            <option value="+224">+224 (Guinea)</option>
+                                            <option value="+225">+225 (Ivory Coast)</option>
+                                            <option value="+226">+226 (Burkina Faso)</option>
+                                            <option value="+227">+227 (Niger)</option>
+                                            <option value="+228">+228 (Togo)</option>
+                                            <option value="+229">+229 (Benin)</option>
+                                            <option value="+230">+230 (Mauritius)</option>
+                                            <option value="+231">+231 (Liberia)</option>
+                                            <option value="+232">+232 (Sierra Leone)</option>
+                                            <option value="+233">+233 (Ghana)</option>
+                                            <option value="+234">+234 (Nigeria)</option>
+                                            <option value="+235">+235 (Chad)</option>
+                                            <option value="+236">+236 (Central African Republic)</option>
+                                            <option value="+237">+237 (Cameroon)</option>
+                                            <option value="+238">+238 (Cape Verde)</option>
+                                            <option value="+239">+239 (São Tomé and Príncipe)</option>
+                                            <option value="+240">+240 (Equatorial Guinea)</option>
+                                            <option value="+241">+241 (Gabon)</option>
+                                            <option value="+242">+242 (Republic of the Congo)</option>
+                                            <option value="+243">+243 (Democratic Republic of the Congo)</option>
+                                            <option value="+244">+244 (Angola)</option>
+                                            <option value="+245">+245 (Guinea-Bissau)</option>
+                                            <option value="+246">+246 (British Indian Ocean Territory)</option>
+                                            <option value="+248">+248 (Seychelles)</option>
+                                            <option value="+249">+249 (Sudan)</option>
+                                            <option value="+250">+250 (Rwanda)</option>
+                                            <option value="+251">+251 (Ethiopia)</option>
+                                            <option value="+252">+252 (Somalia)</option>
+                                            <option value="+253">+253 (Djibouti)</option>
+                                            <option value="+254">+254 (Kenya)</option>
+                                            <option value="+255">+255 (Tanzania)</option>
+                                            <option value="+256">+256 (Uganda)</option>
+                                            <option value="+257">+257 (Burundi)</option>
+                                            <option value="+258">+258 (Mozambique)</option>
+                                            <option value="+260">+260 (Zambia)</option>
+                                            <option value="+261">+261 (Madagascar)</option>
+                                            <option value="+262">+262 (Réunion)</option>
+                                            <option value="+263">+263 (Zimbabwe)</option>
+                                            <option value="+264">+264 (Namibia)</option>
+                                            <option value="+265">+265 (Malawi)</option>
+                                            <option value="+266">+266 (Lesotho)</option>
+                                            <option value="+267">+267 (Botswana)</option>
+                                            <option value="+268">+268 (Eswatini)</option>
+                                            <option value="+269">+269 (Comoros)</option>
+                                            <option value="+290">+290 (Saint Helena)</option>
+                                            <option value="+291">+291 (Eritrea)</option>
+                                            <option value="+297">+297 (Aruba)</option>
+                                            <option value="+298">+298 (Faroe Islands)</option>
+                                            <option value="+299">+299 (Greenland)</option>
+                                            <option value="+350">+350 (Gibraltar)</option>
+                                            <option value="+351">+351 (Portugal)</option>
+                                            <option value="+352">+352 (Luxembourg)</option>
+                                            <option value="+353">+353 (Ireland)</option>
+                                            <option value="+354">+354 (Iceland)</option>
+                                            <option value="+355">+355 (Albania)</option>
+                                            <option value="+356">+356 (Malta)</option>
+                                            <option value="+357">+357 (Cyprus)</option>
+                                            <option value="+358">+358 (Finland)</option>
+                                            <option value="+359">+359 (Bulgaria)</option>
+                                            <option value="+370">+370 (Lithuania)</option>
+                                            <option value="+371">+371 (Latvia)</option>
+                                            <option value="+372">+372 (Estonia)</option>
+                                            <option value="+373">+373 (Moldova)</option>
+                                            <option value="+374">+374 (Armenia)</option>
+                                            <option value="+375">+375 (Belarus)</option>
+                                            <option value="+376">+376 (Andorra)</option>
+                                            <option value="+377">+377 (Monaco)</option>
+                                            <option value="+378">+378 (San Marino)</option>
+                                            <option value="+380">+380 (Ukraine)</option>
+                                            <option value="+381">+381 (Serbia)</option>
+                                            <option value="+382">+382 (Montenegro)</option>
+                                            <option value="+383">+383 (Kosovo)</option>
+                                            <option value="+385">+385 (Croatia)</option>
+                                            <option value="+386">+386 (Slovenia)</option>
+                                            <option value="+387">+387 (Bosnia and Herzegovina)</option>
+                                            <option value="+389">+389 (North Macedonia)</option>
+                                            <option value="+420">+420 (Czech Republic)</option>
+                                            <option value="+421">+421 (Slovakia)</option>
+                                            <option value="+423">+423 (Liechtenstein)</option>
+                                            <option value="+500">+500 (Falkland Islands)</option>
+                                            <option value="+501">+501 (Belize)</option>
+                                            <option value="+502">+502 (Guatemala)</option>
+                                            <option value="+503">+503 (El Salvador)</option>
+                                            <option value="+504">+504 (Honduras)</option>
+                                            <option value="+505">+505 (Nicaragua)</option>
+                                            <option value="+506">+506 (Costa Rica)</option>
+                                            <option value="+507">+507 (Panama)</option>
+                                            <option value="+508">+508 (Saint Pierre and Miquelon)</option>
+                                            <option value="+509">+509 (Haiti)</option>
+                                            <option value="+590">+590 (Guadeloupe)</option>
+                                            <option value="+591">+591 (Bolivia)</option>
+                                            <option value="+592">+592 (Guyana)</option>
+                                            <option value="+593">+593 (Ecuador)</option>
+                                            <option value="+594">+594 (French Guiana)</option>
+                                            <option value="+595">+595 (Paraguay)</option>
+                                            <option value="+596">+596 (Martinique)</option>
+                                            <option value="+597">+597 (Suriname)</option>
+                                            <option value="+598">+598 (Uruguay)</option>
+                                            <option value="+599">+599 (Curaçao)</option>
+                                            <option value="+670">+670 (East Timor)</option>
+                                            <option value="+672">+672 (Norfolk Island)</option>
+                                            <option value="+673">+673 (Brunei)</option>
+                                            <option value="+674">+674 (Nauru)</option>
+                                            <option value="+675">+675 (Papua New Guinea)</option>
+                                            <option value="+676">+676 (Tonga)</option>
+                                            <option value="+677">+677 (Solomon Islands)</option>
+                                            <option value="+678">+678 (Vanuatu)</option>
+                                            <option value="+679">+679 (Fiji)</option>
+                                            <option value="+680">+680 (Palau)</option>
+                                            <option value="+681">+681 (Wallis and Futuna)</option>
+                                            <option value="+682">+682 (Cook Islands)</option>
+                                            <option value="+683">+683 (Niue)</option>
+                                            <option value="+685">+685 (Samoa)</option>
+                                            <option value="+686">+686 (Kiribati)</option>
+                                            <option value="+687">+687 (New Caledonia)</option>
+                                            <option value="+688">+688 (Tuvalu)</option>
+                                            <option value="+689">+689 (French Polynesia)</option>
+                                            <option value="+690">+690 (Tokelau)</option>
+                                            <option value="+691">+691 (Micronesia)</option>
+                                            <option value="+692">+692 (Marshall Islands)</option>
+                                            <option value="+850">+850 (North Korea)</option>
+                                            <option value="+852">+852 (Hong Kong)</option>
+                                            <option value="+853">+853 (Macau)</option>
+                                            <option value="+855">+855 (Cambodia)</option>
+                                            <option value="+856">+856 (Laos)</option>
+                                            <option value="+880">+880 (Bangladesh)</option>
+                                            <option value="+886">+886 (Taiwan)</option>
+                                            <option value="+960">+960 (Maldives)</option>
+                                            <option value="+961">+961 (Lebanon)</option>
+                                            <option value="+962">+962 (Jordan)</option>
+                                            <option value="+963">+963 (Syria)</option>
+                                            <option value="+964">+964 (Iraq)</option>
+                                            <option value="+965">+965 (Kuwait)</option>
+                                            <option value="+966">+966 (Saudi Arabia)</option>
+                                            <option value="+967">+967 (Yemen)</option>
+                                            <option value="+968">+968 (Oman)</option>
+                                            <option value="+970">+970 (Palestine)</option>
+                                            <option value="+971">+971 (United Arab Emirates)</option>
+                                            <option value="+972">+972 (Israel)</option>
+                                            <option value="+973">+973 (Bahrain)</option>
+                                            <option value="+974">+974 (Qatar)</option>
+                                            <option value="+975">+975 (Bhutan)</option>
+                                            <option value="+976">+976 (Mongolia)</option>
+                                            <option value="+977">+977 (Nepal)</option>
+                                            <option value="+992">+992 (Tajikistan)</option>
+                                            <option value="+993">+993 (Turkmenistan)</option>
+                                            <option value="+994">+994 (Azerbaijan)</option>
+                                            <option value="+995">+995 (Georgia)</option>
+                                            <option value="+996">+996 (Kyrgyzstan)</option>
+                                            <option value="+998">+998 (Uzbekistan)</option>
+                                        </select>
+                                        
+                            </div>
+                            <input type="tel" id="phone" name="phone" class="rectangle-14" placeholder="Telefoonnummer" >
+                        </div>
+                    </div>
+                    <div class="container-7">
+                    </div>
+                </div>
+                <button type="submit" id="next-button" class="volgende">Volgende</button>
 
-                        if (allDisabled || isWeekend) {
-                            dayDiv.classList.add('disabled'); // Add custom class for days that are completely disabled
-                        } else if (date.getDay() !== 0 && date.getDay() !== 5) {
-                            const pointMarker = document.createElement('div');
-                            pointMarker.className = 'point';
-                            dayDiv.appendChild(pointMarker);
-                        }
+            </form>
             
-                        dayDiv.setAttribute('data-date', dateString);
-                        dayDiv.addEventListener('click', () => selectDate(dayDiv, allDisabled));
-                        calendarDays.appendChild(dayDiv);
-                    }
-                }
-            
-                function selectDate(dayDiv, isDisabledDay) {
-                    if (!isDisabledDay && dayDiv.querySelector('.point')) {
-                        // If it has a point and is not disabled, show timepicker and hide design-placeholder
-                        const date = dayDiv.getAttribute('data-date');
-                        const dateString = new Date(date).toLocaleDateString('nl-NL', {
-                            weekday: 'long',
-                            year: 'numeric',
-                            month: 'long',
-                            day: 'numeric'
-                        });
-            
-                        selectedDateInfo.textContent = `Datum: ${dateString}`;
-                        selectedTimeInfo.textContent = '';
-                        appointmentDetails.textContent = '';
-                        nextButton.classList.add('disabled');
-                        hiddenDate.value = date; // Set hidden date value
-                        hiddenTime.value = ''; // Clear hidden time value
-                        populateTimeSlots(date);
-            
-                        document.querySelector('.calendar-day.selected')?.classList.remove('selected');
-                        dayDiv.classList.add('selected');
-            
-                        // Hide design-placeholder and show timepicker
-                        designPlaceholder.style.display = 'none';
-                        timepicker.style.display = 'flex';
-                    } else {
-                        const date = dayDiv.getAttribute('data-date');
-                        const dateString = new Date(date).toLocaleDateString('nl-NL', {
-                            weekday: 'long',
-                            year: 'numeric',
-                            month: 'long',
-                            day: 'numeric'
-                        });
-                        placholderDateInfo.textContent = `${dateString}`;
-            
-                        document.querySelector('.calendar-day.selected')?.classList.remove('selected');
-                        dayDiv.classList.add('selected');
-                        // If it doesn't have a point, show design-placeholder and hide timepicker
-                        designPlaceholder.style.display = 'flex';
-                        timepicker.style.display = 'none';
-                    }
-                }
-            
-                function populateTimeSlots(date) {
-                    timepicker.innerHTML = '';
-            
-                    const maxVisibleSlots = 10; // Number of slots to show initially
-                    let isExpanded = false; // Track if all slots are shown
-            
-                    // Get the times for the selected date
-                    const dayTimes = daysData[date] || [];
-            
-                    // Function to render time slots based on visibility
-                    function renderTimeSlots() {
-                        timepicker.innerHTML = '';
-            
-                        const slotsToShow = isExpanded ? dayTimes.length : Math.min(dayTimes.length, maxVisibleSlots);
-            
-                        dayTimes.slice(0, slotsToShow).forEach(({ time, status }) => {
-                            const slotDiv = document.createElement('div');
-                            slotDiv.textContent = time;
-                            if (status === 1) {
-                                slotDiv.classList.add('highlight', 'disabled'); // Add custom class for highlighted slots when status is 1 and disable it
-                            } else {
-                                slotDiv.addEventListener('click', () => {
-                                    document.querySelectorAll('.timepicker div.selected').forEach(el => el.classList.remove('selected'));
-                                    slotDiv.classList.add('selected');
-                                    selectedTimeInfo.textContent = `Tijd: ${slotDiv.textContent}`;
-                                    appointmentDetails.textContent = `Afspraak op ${new Date(date).toLocaleDateString('nl-NL')} om ${slotDiv.textContent}`;
-                                    nextButton.classList.remove('disabled');
-                                    hiddenTime.value = slotDiv.textContent; // Set hidden time value
-                                });
-                            }
-                            timepicker.appendChild(slotDiv);
-                        });
-            
-                        if (dayTimes.length > maxVisibleSlots) {
-                            const showAllButton = document.createElement('button');
-                            showAllButton.classList.add('show-all');
-                            showAllButton.textContent = isExpanded ? 'Show Less' : 'Show All';
-                            showAllButton.addEventListener('click', () => {
-                                isExpanded = !isExpanded;
-                                renderTimeSlots();
-                            });
-                            timepicker.appendChild(showAllButton);
-                        }
-                    }
-            
-                    renderTimeSlots();
-                }
-            
-                document.getElementById('prevMonth').addEventListener('click', () => {
-                    currentDate.setMonth(currentDate.getMonth() - 1);
-                    updateCalendar();
+        </div>
+    </div>
+       
+        
+
+        <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+    <script>
+const calendarDays = document.getElementById('calendarBody');
+const timepicker = document.getElementById('timepicker');
+const nextButton = document.getElementById('next-button');
+const currentMonthLabel = document.getElementById('currentMonth');
+const designPlaceholder = document.getElementById('design_placeholder');
+const placholderDateInfo = document.getElementById('placeholder-date');
+
+const hiddenDate = document.getElementById('hidden-date');
+const hiddenTime = document.getElementById('hidden-time');
+
+let currentDate = new Date(); // Start with today's date
+let nextDay = new Date(currentDate);
+nextDay.setDate(currentDate.getDate() + 1); // Set nextDay to the day after today
+
+// Pass days data to JavaScript
+const daysData = @json($daysDataArray);
+
+function updateCalendar() {
+    calendarDays.innerHTML = '';
+    currentMonthLabel.textContent = currentDate.toLocaleDateString('nl-NL', {
+        month: 'long',
+        year: 'numeric'
+    });
+
+    const firstDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+    const lastDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
+
+    // Start day of the week (0 for Sunday, 1 for Monday, etc.)
+    const startDay = (firstDayOfMonth.getDay() + 6) % 7; // Adjusting to start week on Monday
+
+    // Populate previous month's trailing days
+    for (let i = 0; i < startDay; i++) {
+        const emptyDiv = document.createElement('div');
+        emptyDiv.className = 'calendar-day outside';
+        calendarDays.appendChild(emptyDiv);
+    }
+
+    // Populate current month's days
+    for (let day = 1; day <= lastDayOfMonth.getDate(); day++) {
+        const dayDiv = document.createElement('div');
+        dayDiv.className = 'calendar-day';
+        dayDiv.textContent = day;
+
+        // Use local date instead of UTC to avoid off-by-one errors
+        const date = new Date(currentDate.getFullYear(), currentDate.getMonth(), day +1);
+        const dateString = date.toISOString().split('T')[0];
+
+        // Check if all times for this day have status == 1
+        const dayTimes = daysData[dateString] || [];
+        const allDisabled = dayTimes.every(timeSlot => timeSlot.status === 1);
+
+         // Check if the day is a weekend day (MAA or DIN)
+         const isWeekend = date.getDay() === 1 || date.getDay() === 2; // 1 = Monday (MAA), 2 = Tuesday (DIN)
+
+       if (allDisabled) {
+          dayDiv.classList.add('disabled'); // Add custom class for days that are completely disabled
+        } else {
+          const pointMarker = document.createElement('div');
+         pointMarker.className = 'point';
+         dayDiv.appendChild(pointMarker);
+        }
+
+        dayDiv.setAttribute('data-date', dateString);
+        dayDiv.addEventListener('click', () => selectDate(dayDiv, allDisabled));
+        calendarDays.appendChild(dayDiv);
+
+        // Automatically select the next day if it is not disabled
+        if (date.toDateString() === nextDay.toDateString() && !allDisabled) {
+            selectDate(dayDiv, allDisabled);
+        }
+    }
+}
+
+function selectDate(dayDiv, isDisabledDay) {
+    if (!isDisabledDay && dayDiv.querySelector('.point')) {
+        // If it has a point and is not disabled, show timepicker and hide design-placeholder
+        const date = dayDiv.getAttribute('data-date');
+        const dateString = new Date(date).toLocaleDateString('nl-NL', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+
+        hiddenDate.value = date; // Set hidden date value
+        hiddenTime.value = ''; // Clear hidden time value
+        populateTimeSlots(date);
+
+        document.querySelector('.calendar-day.selected')?.classList.remove('selected');
+        dayDiv.classList.add('selected');
+
+        // Hide design-placeholder and show timepicker
+        designPlaceholder.style.display = 'none';
+        timepicker.style.display = 'flex';
+    } else {
+        const date = dayDiv.getAttribute('data-date');
+        const dateString = new Date(date).toLocaleDateString('nl-NL', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+        placholderDateInfo.textContent = `${dateString}`;
+
+        document.querySelector('.calendar-day.selected')?.classList.remove('selected');
+        dayDiv.classList.add('selected');
+        // If it doesn't have a point, show design-placeholder and hide timepicker
+        designPlaceholder.style.display = 'flex';
+        timepicker.style.display = 'none';
+    }
+}
+
+function populateTimeSlots(date) {
+    timepicker.innerHTML = '';
+
+    const maxVisibleSlots = 10; // Number of slots to show initially
+    let isExpanded = false; // Track if all slots are shown
+
+    // Get the times for the selected date
+    const dayTimes = daysData[date] || [];
+
+    // Function to render time slots based on visibility
+    function renderTimeSlots() {
+        timepicker.innerHTML = '';
+
+        const slotsToShow = isExpanded ? dayTimes.length : Math.min(dayTimes.length, maxVisibleSlots);
+
+        dayTimes.slice(0, slotsToShow).forEach(({ time, status }) => {
+            const slotDiv = document.createElement('div');
+            slotDiv.textContent = time;
+            if (status === 1) {
+                slotDiv.classList.add('highlight', 'disabled'); // Add custom class for highlighted slots when status is 1 and disable it
+            } else {
+                slotDiv.addEventListener('click', () => {
+                    // Remove 'selected' class from all time slots
+                    document.querySelectorAll('.timepicker div.selected').forEach(el => el.classList.remove('selected'));
+                    // Add 'selected' class to the clicked time slot
+                    slotDiv.classList.add('selected');
+
+                    // Update selected time info
+                    const formattedDate = new Date(date).toLocaleDateString('nl-NL', {
+                        year: 'numeric',
+                        month: '2-digit',
+                        day: '2-digit',
+                    }).split('/').reverse().join('-');
+
+                    // Update appointment details
+                    
+                    // Set hidden time value
+                    hiddenTime.value = slotDiv.textContent; // This line sets the hidden time
+                    console.log(`Selected time: ${slotDiv.textContent}`); // Debugging log
                 });
-            
-                document.getElementById('nextMonth').addEventListener('click', () => {
-                    currentDate.setMonth(currentDate.getMonth() + 1);
-                    updateCalendar();
-                });
-            
-                nextButton.addEventListener('click', (e) => {
-                    if (!nextButton.classList.contains('disabled')) {
-                        document.getElementById('bookingForm').submit();
-                    } else {
-                        e.preventDefault();
-                    }
-                });
-            
-                updateCalendar();
-            </script>
-            
+            }
+            timepicker.appendChild(slotDiv);
+        });
+
+        if (dayTimes.length > maxVisibleSlots) {
+            const showAllButton = document.createElement('button');
+            showAllButton.classList.add('show-all');
+            showAllButton.textContent = isExpanded ? 'laat minder zien' : 'toon alles';
+            showAllButton.addEventListener('click', () => {
+                isExpanded = !isExpanded;
+                renderTimeSlots();
+            });
+            timepicker.appendChild(showAllButton);
+        }
+    }
+
+    renderTimeSlots();
+}
+
+document.getElementById('prevMonth').addEventListener('click', () => {
+    currentDate.setMonth(currentDate.getMonth() - 1);
+    updateCalendar();
+});
+
+document.getElementById('nextMonth').addEventListener('click', () => {
+    currentDate.setMonth(currentDate.getMonth() + 1);
+    updateCalendar();
+});
+
+updateCalendar();
+
+
+
+    </script>        
         
 </body>
 

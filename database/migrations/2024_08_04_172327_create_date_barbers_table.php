@@ -16,7 +16,9 @@ return new class extends Migration
             $table->date('date');
             $table->time('time');
             $table->string('name');
-            $table->boolean('status')->default(false); 
+            $table->boolean('status')->default(false);
+            $table->string('month');
+            $table->string('day');
             $table->timestamps();
         });
     }

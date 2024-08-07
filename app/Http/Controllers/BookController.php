@@ -12,8 +12,8 @@ class BookController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-       return view('empty');
+    {  
+       
     }
 
     /**
@@ -52,7 +52,7 @@ class BookController extends Controller
                 ];
             });
         });
-    
+     
         // Convert the collection to an array for JavaScript
         $daysDataArray = $daysData->toArray();
     

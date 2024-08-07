@@ -33,15 +33,14 @@ class CustomerDetailsController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
+    { 
         // Validate the incoming request data
         $request->validate([
-            'name' => 'required|string|max:255',
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
-            'code' => 'required|string|max:5',
-            'phone' => 'required|string|max:20',
-            'sms-reminder' => 'nullable|boolean',
-            'message' => 'nullable|string',
+            'code' => 'string|max:5',
+            'phone' => 'string|max:20',
             'service_name' => 'required|string|max:255',
             'service_price' => 'required|numeric',
             'service_currency' => 'required|string|max:10',
@@ -50,18 +49,19 @@ class CustomerDetailsController extends Controller
         try {
                 // Store the booking in the database
             $booking = Booking::create([
-                'name' => $request->input('name'),
+                'first_name' => $request->input('first_name'),
+                'last_name' => $request->input('last_name'),
                 'email' => $request->input('email'),
                 'code' => $request->input('code'),
                 'phone' => $request->input('phone'),
-                'sms_reminder' => $request->input('sms-reminder', false),
-                'message' => $request->input('message'),
                 'service_name' => $request->input('service_name'),
                 'service_price' => $request->input('service_price'),
                 'date' => $request->input('selected_date'),
                 'time' => $request->input('selected_time'),
                 'service_currency' => $request->input('service_currency'),
             ]);
+           
+           
             $dateBarber = DateBarber::where('date', $request->input('selected_date'))
             ->where('time', $request->input('selected_time'))
             ->first();
@@ -85,31 +85,22 @@ class CustomerDetailsController extends Controller
     }
     
     public function show(Request $request,String $id)
-    {  
+    { 
         try {
         $booking = Booking::findOrFail($id);
         $booking->update([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'code' => $request->input('code'),
-            'phone' => $request->input('phone'),
-            'sms_reminder' => $request->input('sms-reminder', false),
-            'message' => $request->input('message'),
-            'service_name' => $request->input('service_name'),
-            'service_price' => $request->input('service_price'),
-            'date' => $request->input('selected_date'),
-            'time' => $request->input('selected_time'),
-            'service_currency' => $request->input('service_currency'),
+                'first_name' => $request->input('first_name'),
+                'last_name' => $request->input('last_name'),
+                'email' => $request->input('email'),
+                'code' => $request->input('code'),
+                'phone' => $request->input('phone'),
+                'service_name' => $request->input('service_name'),
+                'service_price' => $request->input('service_price'),
+                'date' => $request->input('selected_date'),
+                'time' => $request->input('selected_time'),
+                'service_currency' => $request->input('service_currency'),
         ]);
-        $dateBarber = DateBarber::where('date', $request->input('selected_date'))
-        ->where('time', $request->input('selected_time'))
-        ->first();
-
-        if ($dateBarber) {
-            $dateBarber->update([
-                'status' => true,
-            ]);
-        }
+      
         $dateBarberold = DateBarber::where('date', $request->input('selected_date_old'))
         ->where('time', $request->input('selected_time_old'))
         ->first();
@@ -123,7 +114,7 @@ class CustomerDetailsController extends Controller
         Mail::to('admin@gmai.com')->send(new BookingConfirmationAdmin($booking));
         Mail::to('yasserkahla@gmai.com')->send(new BookingConfirmationYasser($booking));
 
-        return back()->with('success', 'Booking successfully created!');
+        return back()->with('success', 'Booking successfully updated!');
 
     } catch (Exception $e) {
             // Handle any exceptions
@@ -142,23 +133,23 @@ class CustomerDetailsController extends Controller
      */
     public function destroy(string $id)
    {
-    $booking = Booking::findOrFail($id);
-    // Find the DateBarber entry that matches the selected date and time of the booking
-    $dateBarber = DateBarber::where('date', $booking->date)
+        $booking = Booking::findOrFail($id);
+        // Find the DateBarber entry that matches the selected date and time of the booking
+        $dateBarber = DateBarber::where('date', $booking->date)
         ->where('time', $booking->time)
         ->first();
-    // If a matching DateBarber record is found, update its status to false
-    if ($dateBarber) {
-        $dateBarber->update([
-            'status' => false,
-        ]);
-    }
+        // If a matching DateBarber record is found, update its status to false
+        if ($dateBarber) {
+           $dateBarber->update([
+              'status' => false,
+           ]);
+        }
 
-    // Delete the booking record
-    $booking->delete();
+        // Delete the booking record
+        $booking->delete();
 
-    // Redirect back with a success message indicating successful deletion
-    return back()->with('success', 'Booking successfully deleted!');
+       // Redirect back with a success message indicating successful deletion
+        return back()->with('success', 'Booking successfully deleted!');
    }
 
 }

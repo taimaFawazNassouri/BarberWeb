@@ -25,7 +25,7 @@ class ServiceSeeder extends Seeder
             ['name' => 'Klassieke haarsnit', 'price' => 20.00, 'currency' =>'€', 'image'=>'https://jim-barbershop.com/wp-content/uploads/2024/07/image-jim-2-1.jpg'],
             ['name' => 'Broske',  'price' => 15.00, 'currency' =>'€', 'image'=>'https://jim-barbershop.com/wp-content/uploads/2024/07/image-jim-4.jpg'],
             ['name' => 'Kinderen', 'price' => 15.00, 'currency' =>'€', 'image'=>'https://jim-barbershop.com/wp-content/uploads/2024/07/image-jim-3-2.jpg'],
-            ['name' => 'Haar en baard', 'price' => 32.50, 'currency' =>'€', 'image'=>'https://jim-barbershop.com/wp-content/uploads/2024/07/image-jim-3.jpg'],
+            ['name' => 'Haar en baard', 'price' => 35, 'currency' =>'€', 'image'=>'https://jim-barbershop.com/wp-content/uploads/2024/07/image-jim-3.jpg'],
         ]);
 
         // Fetch all services

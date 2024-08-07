@@ -18,23 +18,66 @@ class DateBarber extends Seeder
 
         // Retrieve the services
         $services = DB::table('services')->pluck('name');
-
+        
         $startDate = Carbon::create(2024, 8, 5);
         $endDate = Carbon::create(2025, 8, 5);
-        $times = ['12:00', '12:30', '13:00', '13:30', '14:00'];
-
+        
+        // Arrays for month and day names in Dutch
+        $monthsInDutch = [
+            1 => 'Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 
+            'Juli', 'Augustus', 'September', 'Oktober', 'November', 'December'
+        ];
+        
+        $daysInDutch = [
+            Carbon::SUNDAY => 'ZON',
+            Carbon::MONDAY => 'MAA',
+            Carbon::TUESDAY => 'DIN',
+            Carbon::WEDNESDAY => 'WOE',
+            Carbon::THURSDAY => 'DON',
+            Carbon::FRIDAY => 'VRI',
+            Carbon::SATURDAY => 'ZAT'
+        ];
+        
         while ($startDate->lte($endDate)) {
+            // Get the day of the week (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
+            $dayOfWeek = $startDate->dayOfWeek;
+            $month = $startDate->month;
+        
+            // Skip Monday (MAA) and Tuesday (DIN)
+            if ($dayOfWeek === Carbon::MONDAY || $dayOfWeek === Carbon::TUESDAY) {
+                $startDate->addDay();
+                continue;
+            }
+        
+            // Define times based on the day of the week
+            if ($dayOfWeek === Carbon::SUNDAY) {
+                // Sunday: 10:15 to 15:15
+                $times = ['10:15', '10:45', '11:15', '11:45', '12:15', '12:45', '13:15', '13:45', '14:15', '14:45', '15:15'];
+            } 
+            else {
+                // Other days: 10:15 to 18:15
+                $times = [
+                    '10:15', '10:45', '11:15', '11:45', '12:15', '12:45', '13:15', '13:45', 
+                    '14:15', '14:45', '15:15', '15:45', '16:15', '16:45', '17:15', '17:45', '18:15'
+                ];
+            }
+        
             foreach ($times as $time) {
                 DB::table('date_barbers')->insert([
                     'date' => $startDate->toDateString(),
                     'time' => $time,
-                    'name' => $services->random(), 
-                    'status' => false, // Set status as boolean
+                    'name' => $services->random(),
+                    'status' => false,
+                    'month' => $monthsInDutch[$month],
+                    'day' => $daysInDutch[$dayOfWeek],
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);
             }
+        
             $startDate->addDay();
         }
+        
     }
+
 }

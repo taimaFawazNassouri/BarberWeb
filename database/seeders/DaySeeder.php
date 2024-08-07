@@ -15,12 +15,13 @@ class DaySeeder extends Seeder
     {
         
         $daysOfWeek = [
-            
-            'Monday',
-            'Tuesday',
-            'Wednesday',
-            'Thursday',
-            'Saturday',
+            'ZON',
+            'MAA',
+            'DIN',
+            'WOE',
+            'DON',
+            'VRI',
+            'ZAT',
         ];
 
         $times = [

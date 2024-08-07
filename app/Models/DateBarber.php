@@ -9,6 +9,6 @@ class DateBarber extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'name','date','time','status'
+        'name','date','time','status','day','month'
     ];
 }

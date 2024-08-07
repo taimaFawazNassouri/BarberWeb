@@ -18,7 +18,7 @@ use App\Http\Controllers\CustomerDetailsController;
 // Route::get('/', function () {
 //     return view('index');
 // });
-Route::get('/', [HomeController::class, 'show']);
+Route::get('/', [HomeController::class, 'show'])->name('home');
 Route::get('/customer_details', [HomeController::class, 'formDetails'])->name('formDetails');
 Route::get('/updateBooking', [HomeController::class, 'updateBooking'])->name('updateBooking');
 
