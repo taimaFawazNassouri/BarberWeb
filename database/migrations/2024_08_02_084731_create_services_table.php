@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('services', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->decimal('price', 8, 2); 
-            $table->decimal('min_price', 8, 2)->nullable();
-            $table->decimal('max_price', 8, 2)->nullable();
+            $table->decimal('price', 8); 
+            $table->decimal('min_price', 8)->nullable();
+            $table->decimal('max_price', 8)->nullable();
             $table->string('currency', 3)->default('EUR');
             $table->string('image')->nullable();
             $table->timestamps();

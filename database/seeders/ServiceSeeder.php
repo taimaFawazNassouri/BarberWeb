@@ -22,52 +22,53 @@ class ServiceSeeder extends Seeder
         DB::table('services')->insert([
             [
                 'name' => 'Baard',
-                'price' => 15.00,
+                'price' => 15,
                 'currency' => '€',
-                'min_price' => 15.00,
+                'min_price' => 15,
                 'max_price' => null,
                 'image' => 'assets/images/Baraad.jpg'
             ],
             [
                 'name' => 'Fade haarsnit',
-                'price' => 25.00,
+                'price' => 25,
                 'currency' => '€',
-                'min_price' => 25.00,
+                'min_price' => 25,
                 'max_price' => null,
                 'image' => 'assets/images/fade.jpg'
             ],
             [
                 'name' => 'Klassieke haarsnit',
-                'price' => 20.00,
+                'price' => 20,
                 'currency' => '€',
-                'min_price' => 20.00,
+                'min_price' => 20,
                 'max_price' => null,
                 'image' => 'assets/images/Klassiek.jpg'
             ],
             [
                 'name' => 'Broske',
-                'price' => 15.00,
+                'price' => 15,
                 'currency' => '€',
-                'min_price' => 15.00,
+                'min_price' => 15,
                 'max_price' => null,
                 'image' => 'assets/images/broske.jpg'
             ],
             [
-                'name' => 'Kinderen',
-                'price' => 15.00,
+                'name' => 'Haar en baard',
+                'price' => 30, // Use a base price
                 'currency' => '€',
-                'min_price' => 15.00,
+                'min_price' => 30,
+                'max_price' => 35,
+                'image' => 'assets/images/haar.jpg'
+            ],
+            [
+                'name' => 'Kinderen',
+                'price' => 15,
+                'currency' => '€',
+                'min_price' => 15,
                 'max_price' => null,
                 'image' => 'assets/images/kinder.jpg'
             ],
-            [
-                'name' => 'Haar en baard',
-                'price' => 32.00, // Use a base price
-                'currency' => '€',
-                'min_price' => 32.00,
-                'max_price' => 35.00,
-                'image' => 'assets/images/haar.jpg'
-            ],
+            
         ]);
 
         // Fetch all services

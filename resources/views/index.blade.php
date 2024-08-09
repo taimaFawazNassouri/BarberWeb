@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
-
     <title>jim-barbershop.com - Barber Shop</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/images/jym post.svg') }}">
+
     <style>
         body, html {
             margin: 0;
@@ -199,7 +200,7 @@
         .preloader-custom-img {
             width: 150px;
             height: 120px;
-            animation: rotate 2.5s linear infinite;
+            animation: rotate 1.5s linear infinite;
         }
 
         @keyframes rotate {
@@ -346,7 +347,7 @@
 </head>
 <body>
     <div class="preloader-plus">
-        <div class="preloader-site-title">Loading...</div>
+        <div class="preloader-site-title">..</div>
         <img src="{{ asset('assets/images/jym-postlol.png') }}" alt="Loading Icon" class="preloader-custom-img"> <!-- Replace with your logo path -->
     </div>
     <!-- Main Image with Logo -->
@@ -362,12 +363,13 @@
                 biedt een verfijnde en stijlvolle omgeving waar mannen terecht kunnen voor de beste<br>
                 knip- en scheerbehandelingen. Wij zijn gespecialiseerd in klassieke en moderne kapsels,<br>
                 strakke baardlijnen en ultieme verzorgingsproducten om jou er op je best uit te laten<br>
-                <span>zien.</span>
+                zien.
             </p><br><br>
             <span>Plan vandaag nog je afspraak en laat je verwennen door de experts van<br>
                 Jim Barbershop.
             </span>
         </div> 
+        <h2>Our Services</h2>
         @foreach ($services->chunk(3) as $chunk)
             <div class="columns">
                 @foreach ($chunk as $service)
@@ -411,8 +413,8 @@
         <img src="{{ asset('assets/images/jym-postlol.png') }}" alt="Logo"> <!-- Replace with your logo path -->
         <div class="line"></div>
         <div class="social-icons">
-            <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
-            <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="hhttps://www.facebook.com/profile.php?id=100092536564619&mibextid=ZbWKwL" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com/jim_barber_shop__/" target="_blank"><i class="fab fa-instagram"></i></a>
         </div>
     </div>
     
