@@ -33,8 +33,7 @@
             color: #777;
             margin-bottom: 20px;
         }
-
-        /* Calendar Header */
+          /* Calendar Header */
 .calendar-header {
     display: flex;
     justify-content: space-between;
@@ -98,11 +97,11 @@
             border-radius: 20px;
             cursor: pointer;
         }
-.timepicker div:hover,
-.timepicker div.selected {
-    background-color: #333;
-    color: white;
-}
+     .timepicker div:hover,
+     .timepicker div.selected {
+       background-color: #333;
+       color: white;
+    }
 
 .highlight {
     background-color: #e0e0e0;
@@ -133,6 +132,8 @@
 }
 
 
+
+      
         .calendar-day.outside {
             color: #ccc;
         }
@@ -367,7 +368,60 @@ select{
             height: 150px;
         }
 
+/* For devices with a max width of 480px */
+@media (max-width: 480px) {
+    .container {
+        grid-template-columns: 1fr; /* Single column layout */
+    }
+
+    .calendar-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .calendar-body,
+    .calendar-weekdays {
+        grid-template-columns: repeat(2, 1fr); /* Adjust grid for smaller screens */
+    }
+
+    .button {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .form-container {
+        padding: 10px;
+    }
+}
+
+/* For devices with a max width of 768px */
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr 1fr; /* Two columns layout */
+    }
+
+    .calendar-header {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .calendar-body,
+    .calendar-weekdays {
+        grid-template-columns: repeat(4, 1fr); /* Adjust grid for tablets */
+    }
+
+    .button {
+        padding: 12px 24px;
+        font-size: 16px;
+    }
+
+    .form-container {
+        padding: 15px;
+    }
+}
+
     </style>
+
 </head>
 
 <body>

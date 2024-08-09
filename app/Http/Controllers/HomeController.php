@@ -24,10 +24,7 @@ class HomeController extends Controller
         
         return view('customer_details',compact('selected_time','selected_date','service_name','service_price','service_currency'));
     }
-    public function email(){
-        $booking = Booking::all();
-        return view('emails.booking_confirmation',compact('booking'));
-    }
+   
 
     public function showBooking($id)
     {

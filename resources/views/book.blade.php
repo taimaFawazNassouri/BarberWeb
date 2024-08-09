@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        body {
+       body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
@@ -33,8 +33,7 @@
             color: #777;
             margin-bottom: 20px;
         }
-
-        /* Calendar Header */
+          /* Calendar Header */
 .calendar-header {
     display: flex;
     justify-content: space-between;
@@ -98,11 +97,11 @@
             border-radius: 20px;
             cursor: pointer;
         }
-.timepicker div:hover,
-.timepicker div.selected {
-    background-color: #333;
-    color: white;
-}
+     .timepicker div:hover,
+     .timepicker div.selected {
+       background-color: #333;
+       color: white;
+    }
 
 .highlight {
     background-color: #e0e0e0;
@@ -133,6 +132,8 @@
 }
 
 
+
+      
         .calendar-day.outside {
             color: #ccc;
         }
@@ -213,11 +214,6 @@
             font-size: 36px;
             line-height: 1.2;
             margin: 0;
-        }
-       
-        .logo img{
-            width: 180px;
-            height: 150px;
         }
 
         .logo p {
@@ -363,6 +359,105 @@ select{
     border-radius: 20px;            
           
         }
+        .delete{
+
+        }
+      
+        .logo img{
+            width: 180px;
+            height: 150px;
+        }
+        @media (max-width: 480px) {
+    .container {
+        grid-template-columns: 1fr;
+        justify-content: center;
+         /* Single column layout */
+    }
+
+    .calendar, .timepicker, .design-placeholder {
+        grid-column: 1 / -1; /* Full width on small screens */
+    }
+
+    .calendar-weekdays {
+        display: flex;
+        padding: 20px;
+        color: #000;
+        font-weight: bold;
+    }
+
+    .calendar-weekdays div {
+        display: flex;
+        padding: 0 10px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Calendar Header */
+    .calendar-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        background-color: #000;
+        color: white;
+        border-radius: 20px;
+    }
+   
+    .calendar-body {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr); /* Ensure 7 equal columns for calendar days */
+        width: 90%;
+        gap: 2px; /* Adjust the gap between calendar days if needed */
+    }
+
+    .timepicker {
+        margin-top: 20px;
+        width: 100%; /* Full width for timepicker */
+    }
+
+    .form-container {
+        margin-top: 20px; /* Space between timepicker and form */
+        width: 100%; /* Ensure form container uses full width */
+    }
+
+    .preMo {
+        text-align: left;
+    }
+
+    .nextMo {
+        text-align: right;
+    }
+    .logo{
+        width: 100px;
+        height: 100px;
+        align-items: center;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr 1fr; /* Two columns layout */
+    }
+
+    .calendar-header {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .calendar-body, .calendar-weekdays {
+        grid-template-columns: repeat(4, 1fr); /* Adjust grid for tablets */
+    }
+
+    .button {
+        padding: 12px 24px;
+        font-size: 16px;
+    }
+
+    .form-container {
+        padding: 15px;
+    }
+}
 
     </style>
 </head>
@@ -372,7 +467,7 @@ select{
         <div class="header-container">
             <div class="center-content">
                 <div class="logo">
-                    <img width="120px" height="100px"  src="{{ asset('assets/images/logo-06 (1).jpg') }}" alt="">
+                    <img src="{{ asset('assets/images/jym-post.png') }}" alt="">
                      <p>HAIR, BEAUTY & BARBERSHOP</p>
                 </div>
                 
@@ -384,9 +479,9 @@ select{
     <div class="container">
         <div class="calendar">
             <div class="calendar-header">
-                <button id="prevMonth">&lt;</button>
+                <button class="preMo" id="prevMonth">&lt;</button>
                 <div id="currentMonth">Augustus 2024</div>
-                <button id="nextMonth">&gt;</button>
+                <button class="nextMo" id="nextMonth">&gt;</button>
             </div>
             <div class="calendar-weekdays">
                 <div>Ma</div>

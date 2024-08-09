@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Service extends Model
 {
     use HasFactory;
-    protected $fillable= ['name','price','currency','image'];
+    protected $fillable= ['name','price','min_price','max_price','currency','image'];
     public function days()
     {
         return $this->belongsToMany(Day::class, 'day_service', 'service_id', 'day_id');

@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->decimal('price', 8, 2); 
+            $table->decimal('min_price', 8, 2)->nullable();
+            $table->decimal('max_price', 8, 2)->nullable();
             $table->string('currency', 3)->default('EUR');
             $table->string('image')->nullable();
             $table->timestamps();

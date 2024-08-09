@@ -20,12 +20,54 @@ class ServiceSeeder extends Seeder
 
         // Insert services
         DB::table('services')->insert([
-            ['name' => 'Baard', 'price' => 15.00, 'currency' =>'€', 'image'=>'https://jim-barbershop.com/wp-content/uploads/2024/07/image-jim-100.jpg'],
-            ['name' => 'Fade haarsnit', 'price' => 25.00, 'currency' =>'€', 'image'=>'https://jim-barbershop.com/wp-content/uploads/2024/07/image-jim-0.jpg'],
-            ['name' => 'Klassieke haarsnit', 'price' => 20.00, 'currency' =>'€', 'image'=>'https://jim-barbershop.com/wp-content/uploads/2024/07/image-jim-2-1.jpg'],
-            ['name' => 'Broske',  'price' => 15.00, 'currency' =>'€', 'image'=>'https://jim-barbershop.com/wp-content/uploads/2024/07/image-jim-4.jpg'],
-            ['name' => 'Kinderen', 'price' => 15.00, 'currency' =>'€', 'image'=>'https://jim-barbershop.com/wp-content/uploads/2024/07/image-jim-3-2.jpg'],
-            ['name' => 'Haar en baard', 'price' => 35, 'currency' =>'€', 'image'=>'https://jim-barbershop.com/wp-content/uploads/2024/07/image-jim-3.jpg'],
+            [
+                'name' => 'Baard',
+                'price' => 15.00,
+                'currency' => '€',
+                'min_price' => 15.00,
+                'max_price' => null,
+                'image' => 'assets/images/Baraad.jpg'
+            ],
+            [
+                'name' => 'Fade haarsnit',
+                'price' => 25.00,
+                'currency' => '€',
+                'min_price' => 25.00,
+                'max_price' => null,
+                'image' => 'assets/images/fade.jpg'
+            ],
+            [
+                'name' => 'Klassieke haarsnit',
+                'price' => 20.00,
+                'currency' => '€',
+                'min_price' => 20.00,
+                'max_price' => null,
+                'image' => 'assets/images/Klassiek.jpg'
+            ],
+            [
+                'name' => 'Broske',
+                'price' => 15.00,
+                'currency' => '€',
+                'min_price' => 15.00,
+                'max_price' => null,
+                'image' => 'assets/images/broske.jpg'
+            ],
+            [
+                'name' => 'Kinderen',
+                'price' => 15.00,
+                'currency' => '€',
+                'min_price' => 15.00,
+                'max_price' => null,
+                'image' => 'assets/images/kinder.jpg'
+            ],
+            [
+                'name' => 'Haar en baard',
+                'price' => 32.00, // Use a base price
+                'currency' => '€',
+                'min_price' => 32.00,
+                'max_price' => 35.00,
+                'image' => 'assets/images/haar.jpg'
+            ],
         ]);
 
         // Fetch all services
