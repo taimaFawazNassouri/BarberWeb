@@ -16,7 +16,7 @@ return new class extends Migration
             $table->date('date');
             $table->time('time');
             $table->string('name');
-            $table->string('status');
+            $table->int('status');
             $table->string('month');
             $table->string('day');
             $table->timestamps();

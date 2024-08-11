@@ -72,10 +72,7 @@ class HomeController extends Controller
             }
     
             if ($status = $request->input('status')) {
-                $status = (int) $status; // Convert to integer for the query
-                if ($status !== '') { // Ensure status is not an empty string
-                    $query->where('status', $status);
-                }
+                $query->where('status', 'LIKE', "%$status%");
             }
     
             $results = $query->select('id','name', 'date', 'time', 'status', 'day', 'month')->get();
