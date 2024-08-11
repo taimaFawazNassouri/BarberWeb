@@ -21,12 +21,12 @@ class ServiceSeeder extends Seeder
         // Insert services
         DB::table('services')->insert([
             [
-                'name' => 'Baard',
-                'price' => 15,
+                'name' => 'Klassieke haarsnit',
+                'price' => 20,
                 'currency' => '€',
-                'min_price' => 15,
+                'min_price' => 20,
                 'max_price' => null,
-                'image' => 'assets/images/Baraad.jpg'
+                'image' => 'assets/images/klassiek.jpg'
             ],
             [
                 'name' => 'Fade haarsnit',
@@ -37,12 +37,28 @@ class ServiceSeeder extends Seeder
                 'image' => 'assets/images/fade.jpg'
             ],
             [
-                'name' => 'Klassieke haarsnit',
-                'price' => 20,
+                'name' => 'Haar en baard',
+                'price' => 30, // Use a base price
                 'currency' => '€',
-                'min_price' => 20,
+                'min_price' => 30,
+                'max_price' => 35,
+                'image' => 'assets/images/Haar.jpg'
+            ],
+            [
+                'name' => 'Baard',
+                'price' => 15,
+                'currency' => '€',
+                'min_price' => 15,
                 'max_price' => null,
-                'image' => 'assets/images/Klassiek.jpg'
+                'image' => 'assets/images/Baraad.jpg'
+            ],
+            [
+                'name' => 'Kinderen',
+                'price' => 15,
+                'currency' => '€',
+                'min_price' => 15,
+                'max_price' => null,
+                'image' => 'assets/images/IMG_6691.JPG'
             ],
             [
                 'name' => 'Broske',
@@ -52,23 +68,6 @@ class ServiceSeeder extends Seeder
                 'max_price' => null,
                 'image' => 'assets/images/broske.jpg'
             ],
-            [
-                'name' => 'Haar en baard',
-                'price' => 30, // Use a base price
-                'currency' => '€',
-                'min_price' => 30,
-                'max_price' => 35,
-                'image' => 'assets/images/haar.jpg'
-            ],
-            [
-                'name' => 'Kinderen',
-                'price' => 15,
-                'currency' => '€',
-                'min_price' => 15,
-                'max_price' => null,
-                'image' => 'assets/images/kinder.jpg'
-            ],
-            
         ]);
 
         // Fetch all services

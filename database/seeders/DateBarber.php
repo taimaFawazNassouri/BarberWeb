@@ -67,7 +67,7 @@ class DateBarber extends Seeder
                     'date' => $startDate->toDateString(),
                     'time' => $time,
                     'name' => $services->random(),
-                    'status' => false,
+                    'status' => "0",
                     'month' => $monthsInDutch[$month],
                     'day' => $daysInDutch[$dayOfWeek],
                     'created_at' => now(),

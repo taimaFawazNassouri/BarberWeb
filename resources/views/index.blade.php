@@ -73,14 +73,37 @@
             width: 100%;
             height: auto;
         }
-        .text p, .text span {
-            font-size: 1.3rem;
-            position: relative;
-            display: inline;
-            padding: 0 5px;
-            background-color: rgba(0, 0, 0, 0.1);
-            color: #000;
-        }
+        .text {
+    overflow: hidden;
+    position: relative;
+    width:400;
+    font-size: 18px;
+}
+
+.line {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95); /* Add scale effect */
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.line.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1); /* Reset scale */
+}
+
+
+/* Optional: Add some spacing between lines */
+.line + .line {
+    margin-top: 10px;
+}
+.line:nth-child(1) {
+    transition-delay: 0.3s;
+}
+.line:nth-child(2) {
+    transition-delay: 0.5s;
+}
+   
+
         .button {
             display: inline-block;
             font-weight: bold;
@@ -176,6 +199,7 @@
             width: 100%;
             height: 100%;
             display: flex;
+            padding-left: 30px;
             justify-content: center;
             align-items: center;
             z-index: 9999; /* Ensure the loader is above everything */
@@ -189,28 +213,16 @@
             transform: scale(1);
         }
 
-        .preloader-site-title {
-            font-weight: bold;
-            font-size: 50px;
-            color: #65615F;
-            text-transform: none;
-            margin-bottom: 20px;
-        }
-
+        
         .preloader-custom-img {
-            width: 150px;
-            height: 120px;
-            animation: rotate 1.5s linear infinite;
+            width: 250px;
+            height: 150px;
+            margin-top: 160px;
+            margin-left:-180px;
+             
         }
 
-        @keyframes rotate {
-            from {
-                transform: rotate(0deg);
-            }
-            to {
-                transform: rotate(360deg);
-            }
-        }
+       
           /* Footer Styles */
           .footer {
             background-color: #000;
@@ -255,6 +267,102 @@
             padding: 10px 0;
             color: #000;
         }
+
+        .dots {
+           display: flex;
+           justify-content: center;
+           padding: 10px;
+           margin-top: -20px;
+        }     
+
+       .dot {
+           width: 15px;
+           height: 15px;
+           margin: 0 5px;
+           background-color: #333;
+           border-radius: 50%;
+            animation: bounce 1s infinite;
+        }
+
+        .dot:nth-child(2) {
+           animation-delay: 0.2s;
+        }
+
+        .dot:nth-child(3) {
+           animation-delay: 0.4s;
+        }
+        .dot:nth-child(4) {
+           animation-delay: 0.6s;
+        }
+
+        @keyframes bounce {
+            0%,60%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+               transform: translateY(-15px);
+             }
+        }
+    .testimonial-container {
+    position: relative;
+    max-width: 1000px;
+    margin: auto;
+    background-color: #1d1d1d;
+    border-radius: 15px;
+    padding: 20px;
+    color: #ffffff;
+}
+.testimonial-container h3{
+    color: #ffffff;
+
+}
+
+.testimonial-content {
+    display: flex;
+    align-items: center;
+}
+
+
+
+.testimonial-img2 {
+   
+    margin-left: -30px;
+    width: 200px;
+    height: 150px;
+}
+
+.testimonial-text {
+    margin-left: 80px;
+    flex: 1;
+}
+
+.stars {
+    color: #f4c150;
+    margin-bottom: 10px;
+    
+}
+
+.dots2 {
+    text-align: center;
+    margin-top: 15px;
+    margin-left: 200px;
+}
+
+.dot2 {
+    height: 8px;
+    width: 8px;
+    margin: 0 5px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.dot2.active {
+    background-color: #f4c150;
+}
+
+ 
     
        
 
@@ -292,16 +400,74 @@
             .preloader-site-title {
                 font-size: 2rem; /* Smaller font size on tablets */
             }
-	
+            .text {
+    overflow: hidden;
+    position: relative;
+    width:300;
+}
+
+.line {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95); /* Add scale effect */
+    transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+}
+
+.line.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1); /* Reset scale */
+}
+
+
+/* Optional: Add some spacing between lines */
+.line + .line {
+    margin-top: 10px;
+}
+.line:nth-child(1) {
+    transition-delay: 0.5s;
+}
+.line:nth-child(2) {
+    transition-delay: 1s;
+}
+   
         }
         
         @media (max-width: 480px) {
             .column {
                 max-width: 100%; /* Single column on small screens */
             }
-            .text p, .text span {
-                font-size: 1rem; /* Adjusted font size for smaller screens */
+            .line.animate-row {
+               opacity: 1;
+               transform: translateY(0);
             }
+            .text {
+    overflow: hidden;
+    position: relative;
+    width:500;
+}
+
+.line {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95); /* Add scale effect */
+    transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+}
+
+.line.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1); /* Reset scale */
+}
+
+
+/* Optional: Add some spacing between lines */
+.line + .line {
+    margin-top: 10px;
+}
+.line:nth-child(1) {
+    transition-delay: 0.5s;
+}
+.line:nth-child(2) {
+    transition-delay: 1s;
+}
+   
 			.logo {
               position: absolute;
                left: -20px; /* Use left property for positioning */
@@ -334,21 +500,83 @@
                text-align: right; /* Keep text right-aligned */
             }
             .preloader-custom-img {
-                width: 60px;
-                height: 60px; /* Smaller logo on mobile */
+                width: 170px;
+                height: 100px;
             }
-            .preloader-site-title {
-                font-size: 1.5rem; /* Smaller font size on mobile */
+                       
+            .dots {
+              display: flex;
+              justify-content: center;
+              padding: 10px;
+              margin-left: -50px;
             }
+ 
 
+
+            .dot {
+              width: 15px;
+              height: 15px;
+              margin: 0 5px;
+              background-color: #333;
+              border-radius: 50%;
+              animation: bounce 1s infinite;
+            }
+            .preloader-plus {
+               background-color: #141414;
+               position: fixed;
+               top: 0;
+               left: 0;
+               width: 100%;
+               height: 100%;
+               display: flex;
+               justify-content: center;
+               align-items: center;
+               z-index: 9999; /* Ensure the loader is above everything */
+               opacity: 1;
+               transition: opacity 1000ms, transform 1000ms, visibility 0s 1000ms;
+           }
+           .preloader-plus .preloader-custom-img{
+               padding-left: 20px;
+           }
+           
             
-        }
+       }
+       @media (max-width: 479px) {
+    /* You can adjust the animation timing or disable it for smaller screens if desired */
+    .line.animate-row {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .line span.animate-char {
+        opacity: 1;
+    }
+}
+
+/* Optional: For devices greater than 760px */
+@media (min-width: 761px) {
+    /* Adjust or disable animations for larger screens */
+    .line.animate-row {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .line span.animate-char {
+        opacity: 1;
+    }
+}
     </style>
 </head>
 <body>
     <div class="preloader-plus">
-        <div class="preloader-site-title">..</div>
-        <img src="{{ asset('assets/images/jym-postlol.png') }}" alt="Loading Icon" class="preloader-custom-img"> <!-- Replace with your logo path -->
+        <div class="dots">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+        <img src="{{ asset('assets/images/jym-postlol.png') }}" alt="Loading Icon" class="preloader-custom-img">
+
     </div>
     <!-- Main Image with Logo -->
     <div class="main-image-wrapper">
@@ -358,18 +586,13 @@
 
     <!-- Content Section -->
     <div class="content-section">
-        <div class="text">
-            <p>Bij Jim Barbershop draait alles om de kunst van mannenverzorging. Onze barbershop<br>
-                biedt een verfijnde en stijlvolle omgeving waar mannen terecht kunnen voor de beste<br>
-                knip- en scheerbehandelingen. Wij zijn gespecialiseerd in klassieke en moderne kapsels,<br>
-                strakke baardlijnen en ultieme verzorgingsproducten om jou er op je best uit te laten<br>
-                zien.
-            </p><br><br>
-            <span>Plan vandaag nog je afspraak en laat je verwennen door de experts van<br>
-                Jim Barbershop.
-            </span>
-        </div> 
-        <h2>Our Services</h2>
+            <div class="text">
+                <p class="line">Bij Jim Barbershop draait alles om de kunst van mannenverzorging. Onze barbershop biedt een verfijnde en stijlvolle omgeving waar mannen terecht kunnen voor de beste knip- en scheerbehandelingen. Wij zijn gespecialiseerd in klassieke en moderne kapsels, strakke baardlijnen en ultieme verzorgingsproducten om jou er op je best uit te laten zien.</p>
+                <br>
+                
+                <p class="line">Plan vandaag nog je afspraak en laat je verwennen door de experts van Jim Barbershop.</p>
+            </div>
+        <h2> onze diensten</h2>
         @foreach ($services->chunk(3) as $chunk)
             <div class="columns">
                 @foreach ($chunk as $service)
@@ -391,11 +614,11 @@
 			<table class="opening-hours-table">
 				<tr>
 					<td class="left">Woensdag - Zaterdag</td>
-					<td class="right">10:00 – 19:00</td>
+					<td class="right">10:15 – 18:15</td>
 				</tr>
 				<tr>
 					<td class="left">Zondag</td>
-					<td class="right">10:00 – 16:00</td>
+					<td class="right">10:15 – 15:15</td>
 				</tr>
 				<tr>
 					<td class="left">Maandag - Dinsdag</td>
@@ -404,8 +627,27 @@
 			</table>
 		</div>
     </section>
+    <div class="testimonial-container">
+        <div class="testimonial">
+            <div class="testimonial-content">
+                <img src="{{ asset('assets/images/Untitled-1.png') }}" alt="Person 2" class="testimonial-img2">
+                <div class="testimonial-text">
+                    <h3 id="testimonial-name">tymen vererfven</h3>
+                    <div class="stars">
+                        &#9733; &#9733; &#9733; &#9733; &#9733;
+                    </div>
+                    <p id="testimonial-review">Vriendelijke kappers en een vlotte service! Ze hebben er alvast 1 extra tevreden klant bij.</p>
+                </div>
+            </div>
+        </div>
+        <div class="dots2">
+            <span class="dot2" onclick="showSlide(1)"></span>
+            <span class="dot2" onclick="showSlide(2)"></span>
+            <span class="dot2" onclick="showSlide(3)"></span>
+        </div>
+    </div>
+    
     <div class="map-section">
-        <h2>Our Location</h2>
         <!-- Insert the Google Maps iframe embed code here -->
         <iframe loading="lazy" src="https://maps.google.com/maps?q=Stormestraat%20123%2C%20Waregem%208790%2C%20Jim%20barbershop&amp;t=m&amp;z=11&amp;output=embed&amp;iwloc=near" title="Stormestraat 123, Waregem 8790, Jim barbershop" aria-label="Stormestraat 123, Waregem 8790, Jim barbershop"></iframe>        </div>
     </div>
@@ -413,7 +655,7 @@
         <img src="{{ asset('assets/images/jym-postlol.png') }}" alt="Logo"> <!-- Replace with your logo path -->
         <div class="line"></div>
         <div class="social-icons">
-            <a href="hhttps://www.facebook.com/profile.php?id=100092536564619&mibextid=ZbWKwL" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.facebook.com/profile.php?id=100092536564619&mibextid=ZbWKwL" target="_blank"><i class="fab fa-facebook"></i></a>
             <a href="https://www.instagram.com/jim_barber_shop__/" target="_blank"><i class="fab fa-instagram"></i></a>
         </div>
     </div>
@@ -435,5 +677,54 @@
          document.querySelector('.main-content').style.display = 'block';
          document.body.style.overflow = 'auto'; // Restore scroll when content is visible
     });
+    function showSlide(index) {
+    // Data arrays for different slides
+        const names = ["Mat Esuz", "Leman Aäron","tymen vererfven"]; // Replace with actual names
+        const reviews = [
+            "volledige service!",
+            "Heel vriendelijke en goede bediening! Perfect voor haar en baard!",
+            "Vriendelijke kappers en een vlotte service! Ze hebben er alvast 1 extra tevreden klant bij.",
+
+            
+        ]; // Replace with actual reviews
+
+        // Update content based on the index
+        document.getElementById("testimonial-name").textContent = names[index - 1];
+        document.getElementById("testimonial-review").textContent = reviews[index - 1];
+
+        // Update dot active class
+        const dots = document.getElementsByClassName("dot2");
+        for (let i = 0; i < dots.length; i++) {
+            dots[i].classList.remove("active"); // Remove the active class from all dots
+        }
+       dots[index - 1].classList.add("active"); 
+    }
+  
+</script>
+<script>
+   
+    
+    document.addEventListener('DOMContentLoaded', function () {
+    const lines = document.querySelectorAll('.line');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            } else {
+                entry.target.classList.remove('visible');
+            }
+        });
+    }, { threshold: 0.3 }); /* Adjust threshold */
+
+    lines.forEach(line => {
+        observer.observe(line);
+    });
+});
+
+
+
+
+
 </script>
 </html>

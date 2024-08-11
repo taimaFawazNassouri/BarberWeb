@@ -15,5 +15,6 @@ class DatabaseSeeder extends Seeder
         $this->call(DaySeeder::class);
      
         $this->call(DateBarber::class);
+        $this->call(userSeeder::class);
     }
 }
