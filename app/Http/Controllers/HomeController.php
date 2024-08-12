@@ -70,12 +70,18 @@ class HomeController extends Controller
             if ($name = $request->input('name')) {
                 $query->where('name', 'LIKE', "%$name%");
             }
-    
-            if ($status = $request->input('status')) {
-                $query->where('status', 'LIKE', "%$status%");
+
+            if ($name_customer = $request->input('name_customer')) {
+                $query->where('name_customer', 'LIKE', "%$name_customer%");
             }
     
-            $results = $query->select('id','name', 'date', 'time', 'status', 'day', 'month')->get();
+            $status = $request->input('status');
+            if (!is_null($status) && $status !== '') {
+                $query->where('status', $status);
+            }
+            
+           
+            $results = $query->select('id','name','name_customer', 'date', 'time', 'status', 'day', 'month')->get();
     
             // Debug SQL query
             \Log::info($query->toSql());
@@ -85,16 +91,18 @@ class HomeController extends Controller
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
-    
+  
     public function updateStatus(Request $request) {
         try {
             $ids = $request->input('ids', []); // Retrieve selected IDs
+            $status = $request->input('status'); // Retrieve the status value
     
             if (is_array($ids) && count($ids) > 0) {
-                // Debugging: Log the received IDs
+                // Debugging: Log the received IDs and status
                 \Log::info('Received IDs: ', $ids);
+                \Log::info('Status to update: ' . $status);
     
-                DateBarber::whereIn('id', $ids)->update(['status' => 2]);
+                DateBarber::whereIn('id', $ids)->update(['status' => $status]);
     
                 return redirect()->back()->with('message', 'Status updated successfully.');
             } else {

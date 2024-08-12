@@ -14,10 +14,7 @@ class DateBarber extends Seeder
      */
     public function run(): void
     {
-        $this->call(ServiceSeeder::class);
-
-        // Retrieve the services
-        $services = DB::table('services')->pluck('name');
+        
         
         $startDate = Carbon::create(2024, 8, 5);
         $endDate = Carbon::create(2025, 8, 5);
@@ -66,7 +63,8 @@ class DateBarber extends Seeder
                 DB::table('date_barbers')->insert([
                     'date' => $startDate->toDateString(),
                     'time' => $time,
-                    'name' => $services->random(),
+                    'name' => null,
+                    'name_customer' => null,
                     'status' => 0,
                     'month' => $monthsInDutch[$month],
                     'day' => $daysInDutch[$dayOfWeek],

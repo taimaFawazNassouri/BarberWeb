@@ -10,6 +10,7 @@
     <!-- jQuery CDN -->
 </head>
 <style>
+/* General styles */
 body {
     font-family: Arial, sans-serif;
     padding: 20px;
@@ -20,11 +21,15 @@ body {
     display: flex;
     gap: 20px;
     margin-bottom: 20px;
+    justify-content: center;
+    flex-wrap: wrap; /* Wrap items on smaller screens */
+    border-radius: 8px;
 }
 
 .filter-item {
     display: flex;
     flex-direction: column;
+    margin-top: 10px;
 }
 
 .filter-item label {
@@ -42,15 +47,16 @@ body {
 #filter-button {
     align-self: flex-end;
     padding: 10px 20px;
-    background-color: #28a745;
+    background-color: #000;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    margin-top: 10px;
 }
 
 #filter-button:hover {
-    background-color: #218838;
+    background-color: #333;
 }
 
 .table-section {
@@ -58,11 +64,15 @@ body {
     padding: 20px;
     border-radius: 4px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    margin: 0 auto;
+    overflow-x: auto;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
+    font-size: 0.9em;
 }
 
 table, th, td {
@@ -75,8 +85,89 @@ th, td {
 }
 
 th {
-    background-color: #f8f8f8;
+    background-color: #000;
+    color: white;
 }
+
+#status-update-select {
+    padding: 10px 15px; /* Adds padding inside the select box */
+    margin-top: 15px; /* Adds margin to the top of the select box */
+    border-radius: 4px; /* Rounds the corners of the select box */
+    border: 1px solid #ccc; /* Adds a light border */
+    background-color: #000; /* Light gray background */
+    color: white; /* Darker text color */
+    font-size: 0.9em,
+    cursor: pointer; /* Changes the cursor to pointer on hover */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow for a 3D effect */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for background and shadow */
+}
+
+#status-update-select:hover {
+    background-color: #e8e8e8; /* Slightly darker background on hover */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Increases shadow on hover for a pop effect */
+}
+
+#status-update-select:focus {
+    outline: none; /* Removes the default outline */
+    border-color: #28a745; /* Changes border color when focused */
+    box-shadow: 0 0 5px rgba(40, 167, 69, 0.5); /* Adds a green glow when focused */
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .filter-section {
+        flex-direction: column; /* Stack filters vertically on smaller screens */
+        align-items: center;
+    }
+
+    .table-section {
+        width: 100%;
+    }
+
+    table {
+        font-size: 0.8em; /* Further reduce font size on smaller screens */
+    }
+}* Responsive Design */
+@media (max-width: 480px) {
+    .filter-section {
+        flex-direction: column; /* Stack filters vertically */
+        align-items: center; /* Center the items */
+        margin-bottom: 10px; /* Reduce margin below filters */
+    }
+
+    .filter-item {
+        width: 100%; /* Make filter items full width */
+        margin-top: 10px;
+    }
+
+    #filter-button {
+        width: 100%; /* Make filter button full width */
+        margin-top: 10px;
+    }
+
+    .table-section {
+        width: 100%; /* Make table section full width */
+        overflow-x: auto; /* Ensure table can scroll horizontally if needed */
+    }
+
+    table {
+        font-size: 0.1em; /* Further reduce font size */
+        border: 0;
+        overflow-x: auto;  /* Remove table border */
+    }
+
+    th, td {
+        border: 1px solid #ddd; /* Add border to table cells */
+    }
+
+    #status-update-select {
+        padding: 10px 15px;
+        margin-top: 15px;
+        width: 100%; /* Make select full width */
+    }
+}
+
 </style>
 <body>
     <div class="filter-section">
@@ -124,7 +215,10 @@ th {
                 <option value="2">Not Available</option>
             </select>
         </div>
-            
+        <div class="filter-item">
+            <label for="customer-filter">Filter by Customer Name:</label>
+            <input type="text" id="customer-filter" placeholder="Enter customer name">
+        </div>
         
         <button id="filter-button">Filter</button>
     </div>
@@ -137,6 +231,7 @@ th {
                         <tr>
                             <th><input type="checkbox" id="select-all"></th>
                             <th>Service Name</th>
+                            <th>Customer Name</th>
                             <th>Date</th>
                             <th>Time</th>
                             <th>Status</th>
@@ -148,7 +243,11 @@ th {
                         <!-- Results will be appended here -->
                     </tbody>
                 </table>
-                <button type="submit" id="update-status-button">Update Status to 2</button>
+                <select id="status-update-select">
+                    <option value="">Select Action</option>
+                    <option value="0">Update Status to 0 (Available)</option>
+                    <option value="2">Update Status to 2 (Not Available)</option>
+                </select>
             </div>
         </form>
         
@@ -181,6 +280,7 @@ th {
             var time = $('#time-filter').val();
             var name = $('#name-filter').val();
             var status = $('#status-filter').val();
+            var name_customer = $('#customer-filter').val();
             console.log('Status Filter Value:', status); // Log the status value
 
 
@@ -192,19 +292,29 @@ th {
                     dateRange: dateRange,
                     time: time,
                     name: name,
-                    status: status 
+                    status: status,
+                    name_customer: name_customer, 
                 },
                 success: function(response) {
                     var tbody = $('#results-table tbody');
                     tbody.empty(); // Clear existing data
 
-                    response.forEach(function(item) {
-                        var row = '<tr>' +
+                      response.forEach(function(item) {
+                            var statusText = '';
+                            if (item.status == 0) {
+                               statusText = 'Available';
+                            } else if (item.status == 1) {
+                                statusText = 'Taken';
+                            } else {
+                               statusText = 'Not Available';
+                            } 
+                            var row = '<tr>' +
                                   '<td><input type="checkbox" class="item-checkbox" data-id="' + item.id + '"></td>' +
                                   '<td>' + item.name + '</td>' +
+                                  '<td>' + item.name_customer + '</td>' +
                                   '<td>' + item.date + '</td>' +
                                   '<td>' + item.time + '</td>' +
-                                  '<td>' + item.status + '</td>' +
+                                  '<td>' + statusText + '</td>' +
                                   '<td>' + item.day + '</td>' +
                                   '<td>' + item.month + '</td>' +
                                   '</tr>';
@@ -224,36 +334,48 @@ th {
         $('.item-checkbox').prop('checked', isChecked);
     });
 
-   $('#status-update-form').on('submit', function(event) {
-    event.preventDefault(); // Prevent default form submission
+    // Handle status update from select dropdown
+    $('#status-update-select').on('change', function() {
+        var selectedStatus = $(this).val();
 
-    $('input[name="ids[]"]').remove(); // Clear previous hidden inputs
-
-    var selectedIds = [];
-    $('.item-checkbox:checked').each(function() {
-        selectedIds.push($(this).data('id'));
+        if (selectedStatus) {
+            updateStatus(selectedStatus);
+        }
     });
 
-    console.log('Selected IDs:', selectedIds); // Debugging
+    function updateStatus(status) {
+        $('input[name="ids[]"]').remove(); // Clear previous hidden inputs
 
-    if (selectedIds.length === 0) {
-        alert('Please select at least one item.');
-        return;
-    }
+        var selectedIds = [];
+        $('.item-checkbox:checked').each(function() {
+            selectedIds.push($(this).data('id'));
+        });
 
-    // Append hidden inputs for each selected ID
-    selectedIds.forEach(function(id) {
+        console.log('Selected IDs:', selectedIds); // Debugging
+
+        if (selectedIds.length === 0) {
+            alert('Please select at least one item.');
+            return;
+        }
+
+        // Append hidden inputs for each selected ID
+        selectedIds.forEach(function(id) {
+            $('<input>').attr({
+                type: 'hidden',
+                name: 'ids[]',
+                value: id
+            }).appendTo('#status-update-form');
+        });
+
         $('<input>').attr({
             type: 'hidden',
-            name: 'ids[]',
-            value: id
+            name: 'status',
+            value: status
         }).appendTo('#status-update-form');
-    });
 
-    // Submit the form after appending the IDs
-    this.submit();
-});
-
+        // Submit the form after appending the IDs and status
+        $('#status-update-form').submit();
+    }
 });
 
 

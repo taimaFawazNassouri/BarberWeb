@@ -61,6 +61,8 @@ class CustomerDetailsController extends Controller
     
             if ($dateBarber) {
                 $dateBarber->update([
+                    'name' => $request->input('service_name'),
+                    'name_customer' => $request->input('first_name') . ' ' . $request->input('last_name'),
                     'status' => true,
                 ]);
             }

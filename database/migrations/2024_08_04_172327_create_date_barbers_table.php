@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id();
             $table->date('date');
             $table->time('time');
-            $table->string('name');
-            $table->int('status');
+            $table->string('name')->nullable();
+            $table->string('name_customer')->nullable();
+            $table->integer('status');
             $table->string('month');
             $table->string('day');
             $table->timestamps();

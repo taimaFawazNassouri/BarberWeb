@@ -22,9 +22,9 @@ Route::get('/customer_details', [HomeController::class, 'formDetails'])->name('f
 Route::get('/updateBooking', [HomeController::class, 'updateBooking'])->name('updateBooking');
 Route::get('/update/{id}', [HomeController::class, 'showBooking'])->name('showBooking');
 Route::get('/admin', [HomeController::class, 'login_admin'])->name('admin');
-Route::get('/signin', [HomeController::class, 'signIn'])->name('signIn');
+Route::match(['get', 'post'], '/signin', [HomeController::class, 'signIn'])->name('signIn');
 Route::post('/fetch-data', [HomeController::class, 'fetchData'])->name('contentFetching');
-Route::post('/update-status', [HomeController::class, 'updateStatus'])->name('updateStatus');
+Route::post('/updateStatus', [HomeController::class, 'updateStatus'])->name('updateStatus');
 
 Route::resource('/books', BookController::class);
 Route::resource('/booking',  CustomerDetailsController::class);
