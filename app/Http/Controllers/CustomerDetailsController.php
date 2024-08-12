@@ -138,7 +138,7 @@ class CustomerDetailsController extends Controller
 
         $booking->delete();
 
-       return view('success');
+       return view('deleteSuccess');
    }
 
 }

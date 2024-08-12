@@ -312,7 +312,7 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    margin-top: 60px;
+    /* margin-top: -60px; */
 }
 
 .container-19 {
@@ -398,7 +398,47 @@ select{
             margin-top: 10px;
         }
         @media (max-width: 480px) {
-          
+            .preloader-custom-img {
+                width: 170px;
+                height: 100px;
+            }
+                       
+            .dots {
+              display: flex;
+              justify-content: center;
+              padding: 10px;
+              margin-left: -50px;
+            }
+ 
+
+
+            .dot {
+              width: 15px;
+              height: 15px;
+              margin: 0 5px;
+              background-color: #333;
+              border-radius: 50%;
+              animation: bounce 1s infinite;
+            }
+            .preloader-plus {
+               background-color: #141414;
+               position: fixed;
+               top: 0;
+               left: 0;
+               width: 100%;
+               height: 100%;
+               display: flex;
+               justify-content: center;
+               align-items: center;
+               z-index: 9999; /* Ensure the loader is above everything */
+               opacity: 1;
+               transition: opacity 1000ms, transform 1000ms, visibility 0s 1000ms;
+           }
+           .preloader-plus .preloader-custom-img{
+               padding-left: 20px;
+           }
+           
+            
           .container {
             grid-template-columns: 1fr;
            justify-content: center;
@@ -562,12 +602,93 @@ select{
     .form-container {
         padding: 15px;
     }
+    .preloader-site-title {
+                font-size: 2rem; /* Smaller font size on tablets */
+            }
 }
+ /* Loader styles */
+         /* Preloader styles */
+         .preloader-plus {
+            background-color: #141414;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            padding-left: 30px;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999; /* Ensure the loader is above everything */
+            opacity: 1;
+            transition: opacity 1000ms, transform 1000ms, visibility 0s 1000ms;
+        }
+
+        .preloader-plus.complete {
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(1);
+        }
+
+        
+        .preloader-custom-img {
+            width: 250px;
+            height: 150px;
+            margin-top: 160px;
+            margin-left:-180px;
+             
+        }
+        .dots {
+           display: flex;
+           justify-content: center;
+           padding: 10px;
+           margin-top: -20px;
+        }     
+
+       .dot {
+           width: 15px;
+           height: 15px;
+           margin: 0 5px;
+           background-color: #333;
+           border-radius: 50%;
+            animation: bounce 1s infinite;
+        }
+
+        .dot:nth-child(2) {
+           animation-delay: 0.2s;
+        }
+
+        .dot:nth-child(3) {
+           animation-delay: 0.4s;
+        }
+        .dot:nth-child(4) {
+           animation-delay: 0.6s;
+        }
+
+        @keyframes bounce {
+            0%,60%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+               transform: translateY(-15px);
+             }
+        }
+
 
     </style>
 </head>
 
 <body>
+    <div class="preloader-plus">
+        <div class="dots">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+        <img src="{{ asset('assets/images/jym-postlol.png') }}" alt="Loading Icon" class="preloader-custom-img">
+        
+    </div>
     <header>
         <div class="header-container">
             <div class="center-content">
@@ -874,6 +995,12 @@ select{
 
         <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
     <script>
+          window.addEventListener('load', function() {
+        // Hide the loader and show the main content
+         document.querySelector('.preloader-plus').classList.add('complete');
+         document.querySelector('.main-content').style.display = 'block';
+         document.body.style.overflow = 'auto'; // Restore scroll when content is visible
+    });
 const calendarDays = document.getElementById('calendarBody');
 const timepicker = document.getElementById('timepicker');
 const nextButton = document.getElementById('next-button');
